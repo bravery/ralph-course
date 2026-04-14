@@ -165,11 +165,13 @@
   });
 
   /* ── QUIZ ENGINE ───────────────────────────────────────────── */
-  window.selectOption = function (btn) {
-    const block = btn.closest('.quiz-question-block');
-    $$('.quiz-option', block).forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-  };
+  $$('.quiz-option').forEach(option => {
+    option.addEventListener('click', () => {
+      const block = option.closest('.quiz-question-block');
+      $$('.quiz-option', block).forEach(o => o.classList.remove('selected'));
+      option.classList.add('selected');
+    });
+  });
 
   window.checkQuiz = function (containerId) {
     const container = $('#' + containerId);
