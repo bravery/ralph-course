@@ -147,7 +147,7 @@
     if (activeTooltip === tip) activeTooltip = null;
   }
 
-  $$('.term').forEach(term => {
+  $$('.term, .term-item').forEach(term => {
     const tip = document.createElement('span');
     tip.className = 'term-tooltip';
     tip.textContent = term.dataset.definition;

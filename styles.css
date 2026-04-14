@@ -1006,6 +1006,57 @@ p:last-child { margin-bottom: 0; }
   color: var(--color-text-secondary);
 }
 
+/* ── KEY TERMS SUMMARY ──────────────────────────────────────── */
+.term-summary {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.term-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  position: relative;
+}
+
+.term-item:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+  transform: translateX(4px);
+}
+
+.term-icon {
+  width: 32px; height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.term-text {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.term-item:hover .term-text {
+  color: var(--color-accent);
+}
+
 /* ── GLOSSARY TOOLTIPS ──────────────────────────────────────── */
 .term {
   border-bottom: 1.5px dashed var(--color-accent-muted);
