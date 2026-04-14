@@ -248,8 +248,8 @@
             <span><strong>Branch</strong></span>
           </div>
         </div>
+        <div class="arch-description" style="margin-top: var(--space-4);"></div>
       </div>
-      <div class="arch-description" style="margin-top: var(--space-4);"></div>
     </div>
 
     <div class="screen animate-in">
@@ -537,15 +537,15 @@
       <div class="arch-diagram">
         <div class="arch-zone">
           <div class="arch-zone-label">输入（启动时）</div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="任务清单 JSON 文件。Ralph 读取它以确定需要完成的故事。">
             <span class="arch-icon">📋</span>
             <span><strong>prd.json</strong></span>
           </div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="学习日志文件。AI 读取它了解之前迭代学到的模式和代码库特性。">
             <span class="arch-icon">📝</span>
             <span><strong>progress.txt</strong></span>
           </div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="项目指南文件。记录代码库结构、编码规范和发现的设计模式。">
             <span class="arch-icon">📚</span>
             <span><strong>AGENTS.md</strong></span>
           </div>
@@ -553,15 +553,15 @@
 
         <div class="arch-zone">
           <div class="arch-zone-label">处理中（每次迭代）</div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="git 提交历史。新 AI 实例通过 git log 了解当前代码状态。">
             <span class="arch-icon">🔀</span>
             <span><strong>Git History</strong></span>
           </div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="源代码目录。AI 读取和修改代码以完成任务。">
             <span class="arch-icon">💻</span>
             <span><strong>Codebase</strong></span>
           </div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="Amp 或 Claude Code 实例。读取指令和上下文后执行任务。">
             <span class="arch-icon">🧠</span>
             <span><strong>AI Instance</strong></span>
           </div>
@@ -569,19 +569,20 @@
 
         <div class="arch-zone">
           <div class="arch-zone-label">输出（每次迭代后）</div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="prd.json 被更新，将完成的故事标记为 passes: true。">
             <span class="arch-icon">✅</span>
             <span><strong>prd.json 更新</strong></span>
           </div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="progress.txt 追加新内容，记录本次迭代完成的故事和学到的经验。">
             <span class="arch-icon">📝</span>
             <span><strong>progress.txt 追加</strong></span>
           </div>
-          <div class="arch-component" style="cursor: default;">
+          <div class="arch-component" data-desc="Git 提交保存本次迭代的代码变更。">
             <span class="arch-icon">🔀</span>
             <span><strong>Git Commit</strong></span>
           </div>
         </div>
+        <div class="arch-description" style="margin-top: var(--space-4);"></div>
       </div>
     </div>
 
