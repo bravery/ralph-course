@@ -40,7 +40,7 @@ cat > index.html << 'EOF'
         <button class="nav-dot" data-target="module-1" data-tooltip="模块 1：Ralph 是什么" role="tab" aria-label="模块 1：Ralph 是什么"></button>
         <button class="nav-dot" data-target="module-2" data-tooltip="模块 2：Ralph 的演员" role="tab" aria-label="模块 2：Ralph 的演员"></button>
         <button class="nav-dot" data-target="module-3" data-tooltip="模块 3：数据如何流动" role="tab" aria-label="模块 3：数据如何流动"></button>
-        <button class="nav-dot" data-target="module-4" data-tooltip="模块 4：内存的秘密" role="tab" aria-label="模块 4：内存的秘密"></button>
+        <button class="nav-dot" data-target="module-4" data-tooltip="模块 4：记忆机制" role="tab" aria-label="模块 4：记忆机制"></button>
         <button class="nav-dot" data-target="module-5" data-tooltip="模块 5：聪明的技巧" role="tab" aria-label="模块 5：聪明的技巧"></button>
         <button class="nav-dot" data-target="module-6" data-tooltip="模块 6：当问题发生时" role="tab" aria-label="模块 6：当问题发生时"></button>
       </div>

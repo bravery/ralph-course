@@ -38,7 +38,7 @@ ralph-course/
 │   ├── 01-intro.html   # 模块1：Ralph 是什么？
 │   ├── 02-actors.html  # 模块2：Ralph 的演员
 │   ├── 03-data-flow.html # 模块3：数据如何流动
-│   ├── 04-memory.html  # 模块4：内存的秘密
+│   ├── 04-memory.html  # 模块4：记忆机制
 │   ├── 05-patterns.html # 模块5：聪明的技巧
 │   └── 06-debugging.html # 模块6：当问题发生时
 └── build.sh            # 构建脚本
@@ -100,7 +100,7 @@ php -S localhost:8000
 - 数据流图解析
 - 场景模拟
 
-### 模块 4：内存的秘密
+### 模块 4：记忆机制
 
 Ralph 如何在无状态 AI 实例间传递知识。
 
