@@ -1,0 +1,244 @@
+<section class="module" id="module-5">
+  <div class="module-content">
+    <span class="module-number">05</span>
+    <h1 class="module-title">聪明的技巧</h1>
+    <p class="module-subtitle">Ralph 如何避免常见陷阱</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">故事拆分：小而可完成</h2>
+      <p>Ralph 的核心理念：每个故事应该小到可以在一次迭代内完成。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">prd.json 示例</div>
+          <div class="tl"><span class="code-keyword">"userStories"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);">{</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-001"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"title"</span>: <span class="code-string">"Add deadline column"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">},</div>
+          <div class="tl" style="padding-left: var(--space-2);">{</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-002"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"title"</span>: <span class="code-string">"Show deadline in UI"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">}</div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">正确做法</div>
+          <p><strong>单职责原则：</strong>US-001 只做数据库变更，US-002 只做 UI 显示。每个故事专注一件事。</p>
+          <p><strong>依赖顺序：</strong>US-001 先做（数据库变更），US-002 后做（依赖数据库）。</p>
+          <p><strong>避免这种情况：</strong>如果有一个故事叫"添加截止日期功能"，它可能同时涉及数据库、UI、验证、筛选，太复杂了。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">验收标准：必须可验证</h2>
+      <p>每个故事的验收标准必须具体、明确、可测试。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">❌ 坏的验收标准</div>
+          <div class="tl"><span class="code-comment"># US-003: Add deadline feature</span></div>
+          <div class="tl"><span class="code-keyword">"acceptanceCriteria"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Works correctly"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Good UX"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Users like it"</span></div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">❌ 问题</div>
+          <p><strong>"Works correctly"</strong> - 太模糊，怎么算正确？</p>
+          <p><strong>"Good UX"</strong> - 主观判断，无法验证</p>
+          <p><strong>"Users like it"</strong> - 需要用户调研，Ralph 无法验证</p>
+        </div>
+      </div>
+
+      <div class="translation-block" style="margin-top: var(--space-6);">
+        <div class="translation-code">
+          <div class="translation-label">✅ 好的验收标准</div>
+          <div class="tl"><span class="code-comment"># US-003: Add deadline field</span></div>
+          <div class="tl"><span class="code-keyword">"acceptanceCriteria"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Date column added to tasks table"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Date picker shows on task form"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Typecheck passes"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Verify in browser using dev-browser skill"</span></div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">✅ 改进</div>
+          <p><strong>"Date column added"</strong> - 具体，可检查数据库 schema</p>
+          <p><strong>"Date picker shows"</strong> - 明确，UI 功能具体描述</p>
+          <p><strong>"Typecheck passes"</strong> - 可执行，有明确结果</p>
+          <p><strong>"Verify in browser"</strong> - 为 UI 故事添加验证步骤</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">质量检查：永远不能绕过</h2>
+      <p>Ralph 要求每个故事的验收标准必须包括质量检查。</p>
+
+      <div class="callout callout-accent">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-title">关键规则</span>
+        <div class="callout-content">
+          <p><strong>所有故事必须有：</strong><code>Typecheck passes</code></p>
+          <p><strong>涉及测试的故事必须有：</strong><code>Tests pass</code></p>
+          <p><strong>前端故事必须有：</strong><code>Verify in browser using dev-browser skill</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">自动归档（Archive）</h2>
+      <p>当你开始新功能时，Ralph 会自动保存旧运行的记录。</p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <p>修改 prd.json（branchName 变化）</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <p>Ralph 检测到分支变化</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <p>创建 archive/日期-功能名/</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <p>复制旧 prd.json 和 progress.txt</p>
+        </div>
+      </div>
+
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">archive/2025-04-14-task-priority/</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">prd.json</div>
+              <div class="ft-desc>历史任务清单</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">progress.txt</div>
+              <div class="ft-desc>历史学习记录</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">错误处理：优雅降级</h2>
+      <p>当 AI 命令失败时，Ralph 不会崩溃，而是继续迭代。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">ralph.sh 中的容错代码</div>
+          <div class="tl"><span class="code-comment"># 启动 AI 实例</span></div>
+          <div class="tl"><span class="code-function">OUTPUT</span>=$(<span class="code-function">amp</span> <span class="code-operator">...</span> || <span class="code-keyword">true</span>)</div>
+          <div class="tl"><span class="code-comment"># 检查完成信号</span></div>
+          <div class="tl"><span class="code-keyword">if</span> <span class="code-function">echo</span> <span class="code-string">"$OUTPUT"</span> | <span class="code-function">grep</span> <span class="code-string">"&lt;promise&gt;COMPLETE&lt;/promise&gt;"</span>; <span class="code-keyword">then</span></div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-function">exit</span> 0</div>
+          <div class="tl"><span class="code-keyword">fi</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">容错设计</div>
+          <p><strong><code>|| true</code></strong>：即使 amp 命令失败，也会继续执行，不会中断循环。</p>
+          <p><strong>信号检查：</strong>只有收到 <code>&lt;promise&gt;COMPLETE&lt;/promise&gt;</code> 才认为完成，失败只是跳过本次。</p>
+          <p><strong>最大迭代保护：</strong>即使一直失败，也会在 MAX_ITERATIONS 次后退出，避免无限循环。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">前端验证：dev-browser skill</h2>
+      <p>对于 UI 相关的故事，必须在浏览器中验证。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">前端故事必须包含</div>
+          <div class="tl"><span class="code-keyword">"acceptanceCriteria"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Priority badge shows on card"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Typecheck passes"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Verify in browser using dev-browser skill"</span> <span class="code-comment">/* 必须 */</span></div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">为什么重要</div>
+          <p><strong>Typecheck 无法检测 UI：</strong>TypeScript 能检查类型错误，但无法检查按钮是否可见。</p>
+          <p><strong>浏览器验证确保可见性：</strong>确认 UI 组件正确渲染，用户可以交互。</p>
+          <p><strong>避免空转：</strong>防止 AI 编译通过但 UI 完全没变化的情况。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">测验：识别好模式</h2>
+
+      <div class="quiz-container" id="quiz-5">
+        <div class="quiz-question-block" data-correct="B" data-explanation-right="正确！验收标准明确可验证，包括 Typecheck 和浏览器验证，这是 Ralph 要求的最佳实践。" data-explanation-wrong="不对。Typecheck 不能替代浏览器验证，UI 故事必须两者都有。">
+          <p class="quiz-question">哪个验收标准最符合 Ralph 的要求？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>Works correctly, Typecheck passes</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>Component renders, Typecheck passes, Verify in browser</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>Typecheck passes</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="quiz-check-btn" onclick="checkQuiz('quiz-5')">检查答案</button>
+        <button class="quiz-reset-btn" onclick="resetQuiz('quiz-5')">重试</button>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">总结：Ralph 的黄金法则</h2>
+
+      <div class="icon-rows">
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E8F5EE; color: #226B41;">1️⃣</div>
+          <div>
+            <strong>小故事</strong>
+            <p>单次迭代能完成，避免上下文溢出</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E4F2F7; color: #1F6280;">2️⃣</div>
+          <div>
+            <strong>可验证</strong>
+            <p>验收标准必须具体、明确、可测试</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDF5E0; color: #BF9530;">3️⃣</div>
+          <div>
+            <strong>必检查</strong>
+            <p>Typecheck + Tests + Browser 验证</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDE8E4; color: #C43A30;">4️⃣</div>
+          <div>
+            <strong>容错性</strong>
+            <p>失败不中断，优雅降级继续</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

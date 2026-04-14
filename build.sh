@@ -1,0 +1,66 @@
+#!/bin/bash
+set -e
+
+echo "Building Ralph course..."
+
+# Assemble the full HTML
+cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ralph：自主式 AI 开发循环完全指南</title>
+
+  <!-- Google Fonts: Bricolage Grotesque · DM Sans · JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root {
+      --color-accent:       #E85937;
+      --color-accent-hover: #C94A30;
+      --color-accent-light: #FDE8E4;
+      --color-accent-muted: #E89A88;
+    }
+  </style>
+
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="nav-inner">
+      <span class="nav-title">Ralph：自主式 AI 开发循环</span>
+      <div class="nav-dots" id="nav-dots" role="tablist">
+        <button class="nav-dot" data-target="module-1" data-tooltip="模块 1：Ralph 是什么" role="tab" aria-label="模块 1：Ralph 是什么"></button>
+        <button class="nav-dot" data-target="module-2" data-tooltip="模块 2：Ralph 的演员" role="tab" aria-label="模块 2：Ralph 的演员"></button>
+        <button class="nav-dot" data-target="module-3" data-tooltip="模块 3：数据如何流动" role="tab" aria-label="模块 3：数据如何流动"></button>
+        <button class="nav-dot" data-target="module-4" data-tooltip="模块 4：内存的秘密" role="tab" aria-label="模块 4：内存的秘密"></button>
+        <button class="nav-dot" data-target="module-5" data-tooltip="模块 5：聪明的技巧" role="tab" aria-label="模块 5：聪明的技巧"></button>
+        <button class="nav-dot" data-target="module-6" data-tooltip="模块 6：当问题发生时" role="tab" aria-label="模块 6：当问题发生时"></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+EOF
+
+# Add modules in order
+for i in 01 02 03 04 05 06; do
+  file=$(ls modules/${i}-*.html)
+  cat "$file" >> index.html
+done
+
+cat >> index.html << 'EOF'
+
+  </main>
+</body>
+</html>
+EOF
+
+echo "Course built: index.html"

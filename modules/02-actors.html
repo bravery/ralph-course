@@ -1,0 +1,225 @@
+<section class="module" id="module-2">
+  <div class="module-content">
+    <span class="module-number">02</span>
+    <h1 class="module-title">认识 Ralph 的"演员"</h1>
+    <p class="module-subtitle">每个文件都有它的角色</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">Architecture Diagram</h2>
+      <p>Ralph 由几个关键文件组成，每个都有特定的职责。点击下面的组件了解更多：</p>
+
+      <div class="arch-diagram">
+        <div class="arch-zone">
+          <div class="arch-zone-label">工作流层</div>
+          <div class="arch-component" data-desc="主循环脚本。管理迭代计数，启动 AI 实例（Amp 或 Claude Code），处理完成信号。">
+            <span class="arch-icon">⚙️</span>
+            <span><strong>ralph.sh</strong></span>
+          </div>
+          <div class="arch-component" data-desc="AI 指令模板（Amp 版本）。告诉每个新实例该做什么：读 PRD、选任务、实施、测试、提交、记录学习。">
+            <span class="arch-icon">📝</span>
+            <span><strong>prompt.md</strong></span>
+          </div>
+          <div class="arch-component" data-desc="AI 指令模板（Claude Code 版本）。与 prompt.md 类似，适配 Claude Code 的命令格式。">
+            <span class="arch-icon">📋</span>
+            <span><strong>CLAUDE.md</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">数据层</div>
+          <div class="arch-component" data-desc="任务清单 JSON 文件。包含项目信息、分支名、描述和用户故事数组。每个故事有优先级和完成状态。">
+            <span class="arch-icon">📋</span>
+            <span><strong>prd.json</strong></span>
+          </div>
+          <div class="arch-component" data-desc="只追加的日志文件。记录每次迭代完成的故事、修改的文件、以及最重要的——发现的设计模式。">
+            <span class="arch-icon">📝</span>
+            <span><strong>progress.txt</strong></span>
+          </div>
+          <div class="arch-component" data-desc="项目文档。Ralph 会更新它来记录发现的代码库模式，这样后续迭代可以学习。">
+            <span class="arch-icon">📚</span>
+            <span><strong>AGENTS.md</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">Git 层</div>
+          <div class="arch-component" data-desc="代码库历史。Ralph 通过 git 提交来保存每个故事的成果，新实例通过 git log 了解当前状态。">
+            <span class="arch-icon">🔀</span>
+            <span><strong>Git History</strong></span>
+          </div>
+          <div class="arch-component" data-desc="分支信息。Ralph 会读取当前分支名，如果开始新功能会创建新分支。">
+            <span class="arch-icon">🌿</span>
+            <span><strong>Branch</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="arch-description" style="margin-top: var(--space-4);"></div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">核心文件详解</h2>
+
+      <div class="translation-block translation-lines">
+        <div class="translation-code">
+          <div class="translation-label">prd.json</div>
+          <div class="tl"><span class="code-keyword">"project"</span>: <span class="code-string">"TaskApp"</span>,</div>
+          <div class="tl"><span class="code-keyword">"branchName"</span>: <span class="code-string">"ralph/task-priority"</span>,</div>
+          <div class="tl"><span class="code-keyword">"userStories"</span>: [{</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-001"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-keyword">"title"</span>: <span class="code-string">"Add priority field"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span></div>
+          <div class="tl">}]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">直白解释</div>
+          <p><strong>任务清单结构：</strong></p>
+          <p><strong>project</strong>: 项目名称，便于识别</p>
+          <p><strong>branchName</strong>: 自动创建的功能分支名</p>
+          <p><strong>userStories</strong>: 待办故事数组</p>
+          <p><strong>id</strong>: 故事唯一标识（如 US-001）</p>
+          <p><strong>title</strong>: 一句话描述</p>
+          <p><strong>passes</strong>: 完成状态开关</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">prd.json.example 解读</h2>
+      
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">prd.json.example</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">项目信息</div>
+              <div class="ft-desc>project: "MyApp"</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">分支名</div>
+              <div class="ft-desc">branchName: "ralph/task-priority"</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">描述</div>
+              <div class="ft-desc">description: "任务优先级..."</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">用户故事数组</div>
+              <div class="ft-desc">
+                <div style="margin-left: var(--space-4);">[</div>
+                <div style="margin-left: var(--space-4);">  { id: "US-001", ... },</div>
+                <div style="margin-left: var(--space-4);">  { id: "US-002", ... }</div>
+                <div style="margin-left: var(--space-4);">]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">角色互动：一场对话</h2>
+
+      <div class="chat-window" id="chat-1">
+        <div class="chat-messages">
+          <div class="chat-message" data-sender="Ralph">
+            <div class="chat-avatar" style="background: #D94F30;">R</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Ralph</div>
+              <p>我需要找下一个未完成的故事...</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="prd.json">
+            <div class="chat-avatar" style="background: #2A7B9B;">📋</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">prd.json</div>
+              <p>我这里有 4 个故事，US-001 和 US-002 已完成（passes: true），下一个是 US-003。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="AI">
+            <div class="chat-avatar" style="background: #7B6DAA;">AI</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Amp</div>
+              <p>收到！我要实现 US-003。让我先检查 git 和 progress.txt 获取上下文。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="progress.txt">
+            <div class="chat-avatar" style="background: #D4A843;">📝</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">progress.txt</div>
+              <p>这个代码库使用 React Hook Form 处理表单，记得在 AGENTS.md 查看模式总结。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="AI">
+            <div class="chat-avatar" style="background: #7B6DAA;">AI</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Amp</div>
+              <p>任务完成！Typecheck 通过，提交了变更。让我更新 prd.json 把 US-003 标记为完成。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="Ralph">
+            <div class="chat-avatar" style="background: #D94F30;">R</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Ralph</div>
+              <p>很好！还有故事未完成，我准备启动下一个迭代...</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-typing" style="display: none;">
+          <div class="chat-avatar" id="chat-1-typing-avatar" style="background: #D94F30;">R</div>
+          <div class="chat-typing-dots">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+          <span class="chat-progress">0 / 6 messages</span>
+        </div>
+        <div class="chat-controls">
+          <button class="btn chat-next-btn">下一条</button>
+          <button class="btn chat-all-btn">全部播放</button>
+          <button class="btn chat-reset-btn">重置</button>
+          <span class="chat-progress">0 / 6 messages</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">练习题：匹配文件与职责</h2>
+
+      <div class="dnd-container" id="dnd-2">
+        <div class="dnd-chips">
+          <div class="dnd-chip" data-answer="script">管理循环和迭代</div>
+          <div class="dnd-chip" data-answer="tasks">存储待办任务清单</div>
+          <div class="dnd-chip" data-answer="log">记录每次迭代的学习</div>
+          <div class="dnd-chip" data-answer="guide">告诉 AI 要做什么</div>
+          <div class="dnd-chip" data-answer="git">保存代码变更历史</div>
+        </div>
+        <div class="dnd-zones">
+          <div class="dnd-zone" data-correct="script">
+            <div class="dnd-zone-label">ralph.sh</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="tasks">
+            <div class="dnd-zone-label">prd.json</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="log">
+            <div class="dnd-zone-label">progress.txt</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="guide">
+            <div class="dnd-zone-label">prompt.md / CLAUDE.md</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="git">
+            <div class="dnd-zone-label">Git History</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-4);">
+        <button class="btn btn-primary" onclick="checkDnD('dnd-2')">检查答案</button>
+        <button class="btn" onclick="resetDnD('dnd-2')" style="margin-left: var(--space-2);">重置</button>
+      </div>
+    </div>
+  </div>
+</section>

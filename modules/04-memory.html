@@ -1,0 +1,197 @@
+<section class="module" id="module-4">
+  <div class="module-content">
+    <span class="module-number">04</span>
+    <h1 class="module-title">内存的秘密</h1>
+    <p class="module-subtitle">Ralph 如何在无状态 AI 实例间传递知识</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">Fresh Instance, Persistent Memory</h2>
+      <p>这是 Ralph 最核心的设计哲学。每次迭代启动的都是全新的 AI 实例（Amp 或 Claude Code），没有任何之前的上下文记忆。但 Ralph 通过三个"记忆载体"让知识跨迭代传递。</p>
+      
+      <div class="callout callout-accent">
+        <span class="callout-icon">💡</span>
+        <span class="callout-title">关键洞察</span>
+        <div class="callout-content">
+          <p>如果你让同一个 AI 实例连续运行多个故事，它会超出上下文窗口，变得越来越慢。Ralph 的"新实例+文件记忆"模式避免了这个问题。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">记忆载体一：progress.txt</h2>
+      <p>这是 Ralph 的"学习日志"，每次迭代都会在末尾追加新的学习内容。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">progress.txt 内容示例</div>
+          <div class="tl"><span class="code-comment"># Ralph Progress Log</span></div>
+          <div class="tl"><span class="code-comment"># ====================</span></div>
+          <div class="tl"><span class="code-comment">## Codebase Patterns</span></div>
+          <div class="tl"><span class="code-comment"># --------------------</span></div>
+          <div class="tl">- This codebase uses React Hook Form</div>
+          <div class="tl">- All API calls go through /api/</div>
+          <div class="tl">- Components are in src/components/</div>
+          <div class="tl" style="color: #CBA6F7;"><span class="code-comment"># 2025-04-14 - US-001: Add priority field</span></div>
+          <div class="tl">- Added priority column to tasks table</div>
+          <div class="tl">- **Learnings for future iterations:</div>
+          <div class="tl">  - Use Prisma's enum for priority: high|medium|low</div>
+          <div class="tl">  - Always update frontend validation when schema changes</div>
+          <div class="tl">---</div>
+          <div class="tl" style="color: #A6E3A1;"><span class="code-comment"># 2025-04-14 - US-002: Display priority</span></div>
+          <div class="tl">- **Learnings for future iterations:</div>
+          <div class="tl">  - TaskCard component handles badge display</div>
+          <div class="tl">  - Priority colors: red=high, yellow=medium, gray=low</div>
+          <div class="tl">---</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">关键设计</div>
+          <p><strong>只追加，不覆盖：</strong>progress.txt 只会在末尾添加新内容，历史永远不会丢失。</p>
+          <p><strong>Codebase Patterns 区：</strong>开头的"Codebase Patterns"区域会由 Ralph 自动更新，汇总最重要的发现。</p>
+          <p><strong>学习标记：</strong>每次迭代的"Learnings for future iterations"部分包含对后续迭代有价值的洞察。</p>
+          <p><strong>提交记录：</strong>包含 git thread URL，供需要时追溯具体实现。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">记忆载体二：AGENTS.md</h2>
+      <p>这是"代码库指南"文件，用于记录项目级别的模式和惯例。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">AGENTS.md 示例</div>
+          <div class="tl"><span class="code-comment"># Ralph Agent Instructions</span></div>
+          <div class="tl"><span class="code-comment">## Codebase Patterns</span></div>
+          <div class="tl">- Example: Use Prisma for database operations</div>
+          <div class="tl">- Example: All forms use React Hook Form</div>
+          <div class="tl">- Example: API errors are caught in hooks</div>
+          <div class="tl"><span class="code-comment">## Project Structure</span></div>
+          <div class="tl">- src/components/ — UI components</div>
+          <div class="tl">- src/hooks/ — Custom React hooks</div>
+          <div class="tl">- src/lib/ — Shared utilities</div>
+          <div class="tl">- prisma/schema.prisma — Database schema</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">为什么 AGENTS.md 很重要</div>
+          <p><strong>AI 友好：</strong>Ralph 会更新这个文件，当你问 AI "这个项目怎么构建"时，AI 会读取它。</p>
+          <p><strong>人类友好：</strong>新开发者可以快速了解代码库结构。</p>
+          <p><strong>上下文注入：</strong>AI 实例启动后，会先读 AGENTS.md 了解项目惯例，再开始编码。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">记忆载体三：Git History</h2>
+      <p>每次迭代的成果都通过 Git 提交保存，形成可追溯的历史记录。</p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">🔀</span>
+        <span class="callout-title">Git 的工作</span>
+        <div class="callout-content">
+          <p><strong>自动提交：</strong>每次故事完成后，AI 自动执行 <code>git add . && git commit -m "feat: US-001 - Add priority field"</code></p>
+          <p><strong>命名规范：</strong>提交信息格式固定：<code>feat: [Story ID] - [Story Title]</code></p>
+          <p><strong>历史可查：</strong>新实例通过 <code>git log --oneline</code> 了解当前状态</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">档案（Archive）机制</h2>
+      <p>当开始新功能时，Ralph 会自动归档之前的运行记录。</p>
+
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">archive/</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14-task-priority/</div>
+              <div class="ft-desc>prd.json, progress.txt</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-15-deadline-feature/</div>
+              <div class="ft-desc>prd.json, progress.txt</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-16-notifications/</div>
+              <div class="ft-desc>prd.json, progress.txt</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">练习题：找出错误</h2>
+
+      <div class="bug-challenge" id="bug-4">
+        <h3>下面这段 progress.txt 有什么问题？</h3>
+        <div class="bug-code">
+          <div class="bug-line" data-correct="true" data-explanation="正确！progress.txt 应该是只追加的，不应该删除或覆盖旧内容。旧的学习记录对后续迭代很有价值。">
+            <span class="line-num">1</span>
+            <code><span class="code-keyword"># Ralph Progress Log</span></code>
+          </div>
+          <div class="bug-line">
+            <span class="line-num">2</span>
+            <code><span class="code-keyword"># ====================</span></code>
+          </div>
+          <div class="bug-line" data-correct="true" data-explanation="正确！每次迭代应该追加自己的条目，而不是替换。这会丢失之前的学习。">
+            <span class="line-num">3</span>
+            <code><span class="code-comment">## Codebase Patterns</span></code>
+          </div>
+          <div class="bug-line" data-correct="true" data-explanation="正确！这是正确的格式：append 操作，保留历史，标记日期和故事 ID。">
+            <span class="line-num">4</span>
+            <code>Started: 2025-04-14 10:30</code>
+          </div>
+          <div class="bug-line" data-correct="true" data-explanation="正确！这是正确的分隔符格式。">
+            <span class="line-num">5</span>
+            <code>---</code>
+          </div>
+          <div class="bug-line">
+            <span class="line-num">6</span>
+            <code><span class="code-comment"># 2025-04-14 - US-002: Add priority display</span></code>
+          </div>
+          <div class="bug-line">
+            <span class="line-num">7</span>
+            <code>echo <span class="code-string">"New progress"</span> > progress.txt  <span class="code-comment"># WRONG: overwrites file</span></code>
+          </div>
+        </div>
+        <div class="bug-feedback"></div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-4);">
+        <button class="btn btn-primary" onclick="document.querySelectorAll('.bug-line').forEach(l => l.classList.contains('correct') || l.classList.remove('correct')); document.querySelector('.bug-feedback').className = 'bug-feedback';">重置</button>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">总结：Ralph 的记忆策略</h2>
+
+      <div class="pattern-cards">
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #FDF5E0; color: #BF9530;">📝</div>
+          <h3 class="pattern-title">progress.txt</h3>
+          <p class="pattern-desc">迭代日志，只追加不覆盖，记录每次发现</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #E8F5EE; color: #226B41;">📚</div>
+          <h3 class="pattern-title">AGENTS.md</h3>
+          <p class="pattern-desc">项目指南，汇总代码库模式和惯例</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #E4F2F7; color: #1F6280;">🔀</div>
+          <h3 class="pattern-title">Git History</h3>
+          <p class="pattern-desc">代码变更历史，可追溯每个故事的实现</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #FDF0E8; color: #BF6A30;">📁</div>
+          <h3 class="pattern-title">Archive</h3>
+          <p class="pattern-desc">归档机制，保存旧运行记录供参考</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">关键术语</h2>
+      <p class="term" data-definition="将新内容添加到文件末尾，而不是覆盖原有内容。progress.txt 使用追加模式，确保学习历史不被丢失。">只追加（Append-only）</p>、<p class="term" data-definition="Ralph 用于记录发现的代码库模式、惯例和设计决策的文件。由 Ralph 自动更新，供后续迭代学习。">AGENTS.md</p>、<p class="term" data-definition="Ralph 的迭代日志文件。每次迭代完成后追加新内容，记录完成的故事、修改的文件和学到的经验。">progress.txt</p>
+    </div>
+  </div>
+</section>

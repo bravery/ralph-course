@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ralph：自主式 AI 开发循环完全指南</title>
+
+  <!-- Google Fonts: Bricolage Grotesque · DM Sans · JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root {
+      --color-accent:       #E85937;
+      --color-accent-hover: #C94A30;
+      --color-accent-light: #FDE8E4;
+      --color-accent-muted: #E89A88;
+    }
+  </style>
+
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="nav-inner">
+      <span class="nav-title">Ralph：自主式 AI 开发循环</span>
+      <div class="nav-dots" id="nav-dots" role="tablist">
+        <button class="nav-dot" data-target="module-1" data-tooltip="模块 1：Ralph 是什么" role="tab" aria-label="模块 1：Ralph 是什么"></button>
+        <button class="nav-dot" data-target="module-2" data-tooltip="模块 2：Ralph 的演员" role="tab" aria-label="模块 2：Ralph 的演员"></button>
+        <button class="nav-dot" data-target="module-3" data-tooltip="模块 3：数据如何流动" role="tab" aria-label="模块 3：数据如何流动"></button>
+        <button class="nav-dot" data-target="module-4" data-tooltip="模块 4：内存的秘密" role="tab" aria-label="模块 4：内存的秘密"></button>
+        <button class="nav-dot" data-target="module-5" data-tooltip="模块 5：聪明的技巧" role="tab" aria-label="模块 5：聪明的技巧"></button>
+        <button class="nav-dot" data-target="module-6" data-tooltip="模块 6：当问题发生时" role="tab" aria-label="模块 6：当问题发生时"></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+<section class="module" id="module-1">
+  <div class="module-content">
+    <span class="module-number">01</span>
+    <h1 class="module-title">Ralph 是什么？</h1>
+    <p class="module-subtitle">理解自主式 AI 开发循环的核心思想</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">你描述需求，Ralph 实现它</h2>
+      <p>想象一下，你只需要告诉 AI "我想给任务管理系统添加优先级功能"，Ralph 就会自动把这个需求分解成可执行的小任务，一个接一个地完成，直到全部实现。</p>
+      
+      <div class="callout callout-accent" style="margin-top: var(--space-6);">
+        <span class="callout-icon">💡</span>
+        <span class="callout-title">Ralph 的核心思想</span>
+        <div class="callout-content">
+          <p><strong>Fresh instance, persistent memory（新实例，持久化记忆）</strong></p>
+          <p>每次运行都是全新的 AI 实例（干净上下文），但通过 git 和文件系统"记住"之前的学习。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">Ralph 解决的问题</h2>
+      
+      <div class="pattern-cards stagger-children">
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #E8F5EE; color: #2D8B55;">🎯</div>
+          <h3 class="pattern-title">小故事执行</h3>
+          <p class="pattern-desc">将大需求分解成单次可完成的小故事，避免 AI 在长上下文里迷失</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #E4F2F7; color: #2A7B9B;">🔄</div>
+          <h3 class="pattern-title">迭代推进</h3>
+          <p class="pattern-desc">循环执行直到所有任务完成，自动处理依赖关系</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #FDF5E0; color: #D4A843;">💾</div>
+          <h3 class="pattern-title">记忆沉淀</h3>
+          <p class="pattern-desc">将发现的设计模式和代码库特性保存下来，供后续迭代学习</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">真实场景演示</h2>
+      
+      <div class="scenario-block">
+        <div class="scenario-context">
+          <span class="scenario-label">场景</span>
+          <p>你正在开发一个任务管理应用，想要添加"截止日期"功能。你只需要运行：</p>
+          <pre style="background: var(--color-bg-code); color: #CDD6F4; padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-3);">
+<span class="code-keyword">echo</span> 'Add deadline field to tasks, show overdue warnings, and enable filtering by deadline' | ralph.sh</pre>
+        </div>
+      </div>
+
+      <p>Ralph 会：</p>
+      <div class="step-cards">
+        <div class="step-card animate-in">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>生成 PRD</strong>
+            <p>创建详细的需求文档，拆分成用户故事</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>转换为 prd.json</strong>
+            <p>将需求转换为可执行的 JSON 格式</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>创建分支</strong>
+            <p>基于 PRD 创建新的功能分支</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>执行循环</strong>
+            <p>逐个完成用户故事，直到全部完成</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">为什么 Ralph 特别适合 vibe coders？</h2>
+      
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">A</div>
+          <p>AI 有"记忆"</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">B</div>
+          <p>发现模式存进 AGENTS.md</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">C</div>
+          <p>下次迭代自动学习</p>
+        </div>
+      </div>
+
+      <div class="quiz-container" id="quiz-1">
+        <div class="quiz-question-block" data-correct="B" data-explanation-right="正确！Ralph 的关键是让每次迭代都是新的 AI 实例，但通过文件（如 AGENTS.md、progress.txt）保存学习成果。" data-explanation-wrong="不完全对。Ralph 的新实例没有上下文记忆，它通过外部文件来'记住'事情。">
+          <p class="quiz-question">Ralph 的"记忆"是指：</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>新实例会记住之前对话的历史</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>每次都是全新实例，学习保存在文件中</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>AI 自带长期记忆功能</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="quiz-check-btn" onclick="checkQuiz('quiz-1')">检查答案</button>
+        <button class="quiz-reset-btn" onclick="resetQuiz('quiz-1')">重试</button>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">关键术语</h2>
+      <p class="term" data-definition="Product Requirements Document，产品需求文档。描述要构建什么、为什么构建、以及如何判断完成。Ralph 会帮你生成它。">PRD</p>、<p class="term" data-definition="Ralph 用来存储待办事项的 JSON 文件。包含项目名称、分支名、描述和用户故事数组。每个故事有 id、标题、描述、验收标准、优先级和完成状态。">prd.json</p>、<p class="term" data-definition="Ralph 的循环执行文件。启动新的 AI 实例来完成任务，处理完成信号，管理迭代次数。">ralph.sh</p>、<p class="term" data-definition="可验证的具体要求。必须清晰、明确、可测试。例如'Typecheck passes'、'Verify in browser'。">验收标准</p>
+    </div>
+  </div>
+</section><section class="module" id="module-2">
+  <div class="module-content">
+    <span class="module-number">02</span>
+    <h1 class="module-title">认识 Ralph 的"演员"</h1>
+    <p class="module-subtitle">每个文件都有它的角色</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">Architecture Diagram</h2>
+      <p>Ralph 由几个关键文件组成，每个都有特定的职责。点击下面的组件了解更多：</p>
+
+      <div class="arch-diagram">
+        <div class="arch-zone">
+          <div class="arch-zone-label">工作流层</div>
+          <div class="arch-component" data-desc="主循环脚本。管理迭代计数，启动 AI 实例（Amp 或 Claude Code），处理完成信号。">
+            <span class="arch-icon">⚙️</span>
+            <span><strong>ralph.sh</strong></span>
+          </div>
+          <div class="arch-component" data-desc="AI 指令模板（Amp 版本）。告诉每个新实例该做什么：读 PRD、选任务、实施、测试、提交、记录学习。">
+            <span class="arch-icon">📝</span>
+            <span><strong>prompt.md</strong></span>
+          </div>
+          <div class="arch-component" data-desc="AI 指令模板（Claude Code 版本）。与 prompt.md 类似，适配 Claude Code 的命令格式。">
+            <span class="arch-icon">📋</span>
+            <span><strong>CLAUDE.md</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">数据层</div>
+          <div class="arch-component" data-desc="任务清单 JSON 文件。包含项目信息、分支名、描述和用户故事数组。每个故事有优先级和完成状态。">
+            <span class="arch-icon">📋</span>
+            <span><strong>prd.json</strong></span>
+          </div>
+          <div class="arch-component" data-desc="只追加的日志文件。记录每次迭代完成的故事、修改的文件、以及最重要的——发现的设计模式。">
+            <span class="arch-icon">📝</span>
+            <span><strong>progress.txt</strong></span>
+          </div>
+          <div class="arch-component" data-desc="项目文档。Ralph 会更新它来记录发现的代码库模式，这样后续迭代可以学习。">
+            <span class="arch-icon">📚</span>
+            <span><strong>AGENTS.md</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">Git 层</div>
+          <div class="arch-component" data-desc="代码库历史。Ralph 通过 git 提交来保存每个故事的成果，新实例通过 git log 了解当前状态。">
+            <span class="arch-icon">🔀</span>
+            <span><strong>Git History</strong></span>
+          </div>
+          <div class="arch-component" data-desc="分支信息。Ralph 会读取当前分支名，如果开始新功能会创建新分支。">
+            <span class="arch-icon">🌿</span>
+            <span><strong>Branch</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="arch-description" style="margin-top: var(--space-4);"></div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">核心文件详解</h2>
+
+      <div class="translation-block translation-lines">
+        <div class="translation-code">
+          <div class="translation-label">prd.json</div>
+          <div class="tl"><span class="code-keyword">"project"</span>: <span class="code-string">"TaskApp"</span>,</div>
+          <div class="tl"><span class="code-keyword">"branchName"</span>: <span class="code-string">"ralph/task-priority"</span>,</div>
+          <div class="tl"><span class="code-keyword">"userStories"</span>: [{</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-001"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-keyword">"title"</span>: <span class="code-string">"Add priority field"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span></div>
+          <div class="tl">}]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">直白解释</div>
+          <p><strong>任务清单结构：</strong></p>
+          <p><strong>project</strong>: 项目名称，便于识别</p>
+          <p><strong>branchName</strong>: 自动创建的功能分支名</p>
+          <p><strong>userStories</strong>: 待办故事数组</p>
+          <p><strong>id</strong>: 故事唯一标识（如 US-001）</p>
+          <p><strong>title</strong>: 一句话描述</p>
+          <p><strong>passes</strong>: 完成状态开关</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">prd.json.example 解读</h2>
+      
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">prd.json.example</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">项目信息</div>
+              <div class="ft-desc>project: "MyApp"</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">分支名</div>
+              <div class="ft-desc">branchName: "ralph/task-priority"</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">描述</div>
+              <div class="ft-desc">description: "任务优先级..."</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">用户故事数组</div>
+              <div class="ft-desc">
+                <div style="margin-left: var(--space-4);">[</div>
+                <div style="margin-left: var(--space-4);">  { id: "US-001", ... },</div>
+                <div style="margin-left: var(--space-4);">  { id: "US-002", ... }</div>
+                <div style="margin-left: var(--space-4);">]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">角色互动：一场对话</h2>
+
+      <div class="chat-window" id="chat-1">
+        <div class="chat-messages">
+          <div class="chat-message" data-sender="Ralph">
+            <div class="chat-avatar" style="background: #D94F30;">R</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Ralph</div>
+              <p>我需要找下一个未完成的故事...</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="prd.json">
+            <div class="chat-avatar" style="background: #2A7B9B;">📋</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">prd.json</div>
+              <p>我这里有 4 个故事，US-001 和 US-002 已完成（passes: true），下一个是 US-003。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="AI">
+            <div class="chat-avatar" style="background: #7B6DAA;">AI</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Amp</div>
+              <p>收到！我要实现 US-003。让我先检查 git 和 progress.txt 获取上下文。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="progress.txt">
+            <div class="chat-avatar" style="background: #D4A843;">📝</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">progress.txt</div>
+              <p>这个代码库使用 React Hook Form 处理表单，记得在 AGENTS.md 查看模式总结。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="AI">
+            <div class="chat-avatar" style="background: #7B6DAA;">AI</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Amp</div>
+              <p>任务完成！Typecheck 通过，提交了变更。让我更新 prd.json 把 US-003 标记为完成。</p>
+            </div>
+          </div>
+          <div class="chat-message" data-sender="Ralph">
+            <div class="chat-avatar" style="background: #D94F30;">R</div>
+            <div class="chat-bubble">
+              <div class="chat-sender">Ralph</div>
+              <p>很好！还有故事未完成，我准备启动下一个迭代...</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-typing" style="display: none;">
+          <div class="chat-avatar" id="chat-1-typing-avatar" style="background: #D94F30;">R</div>
+          <div class="chat-typing-dots">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+          <span class="chat-progress">0 / 6 messages</span>
+        </div>
+        <div class="chat-controls">
+          <button class="btn chat-next-btn">下一条</button>
+          <button class="btn chat-all-btn">全部播放</button>
+          <button class="btn chat-reset-btn">重置</button>
+          <span class="chat-progress">0 / 6 messages</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">练习题：匹配文件与职责</h2>
+
+      <div class="dnd-container" id="dnd-2">
+        <div class="dnd-chips">
+          <div class="dnd-chip" data-answer="script">管理循环和迭代</div>
+          <div class="dnd-chip" data-answer="tasks">存储待办任务清单</div>
+          <div class="dnd-chip" data-answer="log">记录每次迭代的学习</div>
+          <div class="dnd-chip" data-answer="guide">告诉 AI 要做什么</div>
+          <div class="dnd-chip" data-answer="git">保存代码变更历史</div>
+        </div>
+        <div class="dnd-zones">
+          <div class="dnd-zone" data-correct="script">
+            <div class="dnd-zone-label">ralph.sh</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="tasks">
+            <div class="dnd-zone-label">prd.json</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="log">
+            <div class="dnd-zone-label">progress.txt</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="guide">
+            <div class="dnd-zone-label">prompt.md / CLAUDE.md</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+          <div class="dnd-zone" data-correct="git">
+            <div class="dnd-zone-label">Git History</div>
+            <div class="dnd-zone-target">Drop here</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-4);">
+        <button class="btn btn-primary" onclick="checkDnD('dnd-2')">检查答案</button>
+        <button class="btn" onclick="resetDnD('dnd-2')" style="margin-left: var(--space-2);">重置</button>
+      </div>
+    </div>
+  </div>
+</section><section class="module" id="module-3">
+  <div class="module-content">
+    <span class="module-number">03</span>
+    <h1 class="module-title">数据如何流动</h1>
+    <p class="module-subtitle">从任务挑选到完成的完整路径</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">一次迭代的完整生命周期</h2>
+      <p>点击"下一步"来逐步了解 Ralph 的一次完整迭代。每一步都展示了数据如何在不同的"演员"之间传递。</p>
+
+      <div class="flow-animation" id="flow-3" data-steps='[
+        {"label": "Ralph 检查 prd.json", "highlight": "flow-prd"},
+        {"label": "找到最高优先的未完成故事", "highlight": "flow-select"},
+        {"label": "启动新 AI 实例读取上下文", "highlight": "flow-ai"},
+        {"label": "AI 实施代码并通过检查", "highlight": "flow-implement"},
+        {"label": "提交变更并更新 prd.json", "highlight": "flow-commit"},
+        {"label": "记录学习到 progress.txt", "highlight": "flow-log"},
+        {"label": "检查是否全部完成", "highlight": "flow-check"}
+      ]'>
+        <div class="flow-actors">
+          <div class="flow-actor" id="flow-prd">
+            <div class="flow-actor-icon">📋</div>
+            <span>prd.json</span>
+          </div>
+          <div class="flow-actor" id="flow-select">
+            <div class="flow-actor-icon">🎯</div>
+            <span>挑选任务</span>
+          </div>
+          <div class="flow-actor" id="flow-ai">
+            <div class="flow-actor-icon">🧠</div>
+            <span>AI 实例</span>
+          </div>
+          <div class="flow-actor" id="flow-implement">
+            <div class="flow-actor-icon">💻</div>
+            <span>实施代码</span>
+          </div>
+          <div class="flow-actor" id="flow-commit">
+            <div class="flow-actor-icon">💾</div>
+            <span>Git 提交</span>
+          </div>
+          <div class="flow-actor" id="flow-log">
+            <div class="flow-actor-icon">📝</div>
+            <span>progress.txt</span>
+          </div>
+          <div class="flow-actor" id="flow-check">
+            <div class="flow-actor-icon">✅</div>
+            <span>检查完成</span>
+          </div>
+        </div>
+        <div class="flow-step-label">点击"下一步"开始动画</div>
+        <div class="flow-controls">
+          <button class="btn flow-next-btn">下一步</button>
+          <button class="btn flow-reset-btn">重置</button>
+          <span class="flow-progress">Step 0 / 7</span>
+        </div>
+        <div class="flow-packet"></div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">详细流程解析</h2>
+
+      <div class="step-cards">
+        <div class="step-card animate-in">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <strong>Ralph 读取 prd.json</strong>
+            <p>检查哪个故事未完成（passes: false），找出优先级最高的一个</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <strong>启动新 AI 实例</strong>
+            <p>执行 <code>amp</code> 或 <code>claude</code> 命令，加载 prompt.md/CLAUDE.md 指令</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <strong>AI 读取上下文</strong>
+            <p>AI 先读 progress.txt（看已学模式），再读 AGENTS.md，然后读 prd.json</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">代码 ↔ 自然语言翻译</h2>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">ralph.sh 核心循环</div>
+          <div class="tl"><span class="code-keyword">for</span> i in $(seq 1 $MAX_ITERATIONS); <span class="code-keyword">do</span></div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-comment"># 启动 AI 实例</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">OUTPUT=$(cat <span class="code-string">"$SCRIPT_DIR/prompt.md"</span> | <span class="code-function">amp</span> <span class="code-operator">...</span> || <span class="code-keyword">true</span>)</div>
+          <div class="tl"><span class="code-comment"># 检查完成信号</span></div>
+          <div class="tl"><span class="code-keyword">if</span> echo <span class="code-string">"$OUTPUT"</span> | grep <span class="code-string">"<promise>COMPLETE</promise>"</span>; <span class="code-keyword">then</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">  echo <span class="code-string">"Ralph completed all tasks!"</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">  exit 0</div>
+          <div class="tl"><span class="code-keyword">fi</span></div>
+          <div class="tl"><span class="code-keyword">done</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">白话版解释</div>
+          <p><strong>循环控制：</strong>Ralph 有一个最大迭代次数，默认 10 次。每次循环启动一个新的 AI 实例。</p>
+          <p><strong>关键信号：</strong>当 AI 完成所有任务时，会在输出中放入 <code>&lt;promise&gt;COMPLETE&lt;/promise&gt;</code> 这个特殊标记。</p>
+          <p><strong>容错设计：</strong><code>|| true</code> 确保即使 AI 命令失败，循环也会继续而不是崩溃。</p>
+          <p><strong>优雅退出：</strong>收到完成信号后，Ralph 立即退出并输出成功消息，不会继续等待。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">数据流图</h2>
+
+      <div class="arch-diagram">
+        <div class="arch-zone">
+          <div class="arch-zone-label">输入（启动时）</div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📋</span>
+            <span><strong>prd.json</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📝</span>
+            <span><strong>progress.txt</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📚</span>
+            <span><strong>AGENTS.md</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">处理中（每次迭代）</div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">🔀</span>
+            <span><strong>Git History</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">💻</span>
+            <span><strong>Codebase</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">🧠</span>
+            <span><strong>AI Instance</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">输出（每次迭代后）</div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">✅</span>
+            <span><strong>prd.json 更新</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📝</span>
+            <span><strong>progress.txt 追加</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">🔀</span>
+            <span><strong>Git Commit</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">场景模拟：添加优先级功能</h2>
+
+      <div class="scenario-block">
+        <div class="scenario-context">
+          <span class="scenario-label">背景</span>
+          <p>你想给任务应用添加"优先级"功能（高/中/低）。你已经用 PRD skill 生成了需求文档。</p>
+        </div>
+      </div>
+
+      <div class="step-cards">
+        <div class="step-card animate-in">
+          <div class="step-num">Step 1</div>
+          <div class="step-body">
+            <strong>转换 PRD</strong>
+            <p>Ralph skill 将 Markdown PRD 转换为 prd.json，包含 4 个用户故事：数据库迁移、UI 显示、编辑表单、筛选功能</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">Step 2</div>
+          <div class="step-body">
+            <strong>启动循环</strong>
+            <p>运行 <code>./ralph.sh</code>，Ralph 读取 prd.json，挑选 US-001（数据库迁移）</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">Step 3</div>
+          <div class="step-body">
+            <strong>AI 实施</strong>
+            <p>Amp 读取指令，检查 progress.txt 了解代码库模式，创建迁移文件，提交变更</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">Step 4</div>
+          <div class="step-body">
+            <strong>迭代继续</strong>
+            <p>Ralph 更新 prd.json 标记 US-001 完成，继续挑选 US-002，直到所有 4 个故事完成</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">测验：理解数据流</h2>
+
+      <div class="quiz-container" id="quiz-3">
+        <div class="quiz-question-block" data-correct="B" data-explanation-right="正确！AI 先读 progress.txt 看之前发现的模式，再读 AGENTS.md 了解代码库惯例，然后才读 prd.json 看当前任务。" data-explanation-wrong="不太对。实际上 AI 先看 progress.txt 获取上下文，这样才知道这个代码库的特定模式。">
+          <p class="quiz-question">AI 实例启动后，按什么顺序读取文件？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>prd.json → progress.txt → AGENTS.md</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>progress.txt → AGENTS.md → prd.json</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>AGENTS.md → prd.json → progress.txt</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="quiz-check-btn" onclick="checkQuiz('quiz-3')">检查答案</button>
+        <button class="quiz-reset-btn" onclick="resetQuiz('quiz-3')">重试</button>
+      </div>
+    </div>
+  </div>
+</section><section class="module" id="module-4">
+  <div class="module-content">
+    <span class="module-number">04</span>
+    <h1 class="module-title">内存的秘密</h1>
+    <p class="module-subtitle">Ralph 如何在无状态 AI 实例间传递知识</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">Fresh Instance, Persistent Memory</h2>
+      <p>这是 Ralph 最核心的设计哲学。每次迭代启动的都是全新的 AI 实例（Amp 或 Claude Code），没有任何之前的上下文记忆。但 Ralph 通过三个"记忆载体"让知识跨迭代传递。</p>
+      
+      <div class="callout callout-accent">
+        <span class="callout-icon">💡</span>
+        <span class="callout-title">关键洞察</span>
+        <div class="callout-content">
+          <p>如果你让同一个 AI 实例连续运行多个故事，它会超出上下文窗口，变得越来越慢。Ralph 的"新实例+文件记忆"模式避免了这个问题。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">记忆载体一：progress.txt</h2>
+      <p>这是 Ralph 的"学习日志"，每次迭代都会在末尾追加新的学习内容。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">progress.txt 内容示例</div>
+          <div class="tl"><span class="code-comment"># Ralph Progress Log</span></div>
+          <div class="tl"><span class="code-comment"># ====================</span></div>
+          <div class="tl"><span class="code-comment">## Codebase Patterns</span></div>
+          <div class="tl"><span class="code-comment"># --------------------</span></div>
+          <div class="tl">- This codebase uses React Hook Form</div>
+          <div class="tl">- All API calls go through /api/</div>
+          <div class="tl">- Components are in src/components/</div>
+          <div class="tl" style="color: #CBA6F7;"><span class="code-comment"># 2025-04-14 - US-001: Add priority field</span></div>
+          <div class="tl">- Added priority column to tasks table</div>
+          <div class="tl">- **Learnings for future iterations:</div>
+          <div class="tl">  - Use Prisma's enum for priority: high|medium|low</div>
+          <div class="tl">  - Always update frontend validation when schema changes</div>
+          <div class="tl">---</div>
+          <div class="tl" style="color: #A6E3A1;"><span class="code-comment"># 2025-04-14 - US-002: Display priority</span></div>
+          <div class="tl">- **Learnings for future iterations:</div>
+          <div class="tl">  - TaskCard component handles badge display</div>
+          <div class="tl">  - Priority colors: red=high, yellow=medium, gray=low</div>
+          <div class="tl">---</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">关键设计</div>
+          <p><strong>只追加，不覆盖：</strong>progress.txt 只会在末尾添加新内容，历史永远不会丢失。</p>
+          <p><strong>Codebase Patterns 区：</strong>开头的"Codebase Patterns"区域会由 Ralph 自动更新，汇总最重要的发现。</p>
+          <p><strong>学习标记：</strong>每次迭代的"Learnings for future iterations"部分包含对后续迭代有价值的洞察。</p>
+          <p><strong>提交记录：</strong>包含 git thread URL，供需要时追溯具体实现。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">记忆载体二：AGENTS.md</h2>
+      <p>这是"代码库指南"文件，用于记录项目级别的模式和惯例。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">AGENTS.md 示例</div>
+          <div class="tl"><span class="code-comment"># Ralph Agent Instructions</span></div>
+          <div class="tl"><span class="code-comment">## Codebase Patterns</span></div>
+          <div class="tl">- Example: Use Prisma for database operations</div>
+          <div class="tl">- Example: All forms use React Hook Form</div>
+          <div class="tl">- Example: API errors are caught in hooks</div>
+          <div class="tl"><span class="code-comment">## Project Structure</span></div>
+          <div class="tl">- src/components/ — UI components</div>
+          <div class="tl">- src/hooks/ — Custom React hooks</div>
+          <div class="tl">- src/lib/ — Shared utilities</div>
+          <div class="tl">- prisma/schema.prisma — Database schema</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">为什么 AGENTS.md 很重要</div>
+          <p><strong>AI 友好：</strong>Ralph 会更新这个文件，当你问 AI "这个项目怎么构建"时，AI 会读取它。</p>
+          <p><strong>人类友好：</strong>新开发者可以快速了解代码库结构。</p>
+          <p><strong>上下文注入：</strong>AI 实例启动后，会先读 AGENTS.md 了解项目惯例，再开始编码。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">记忆载体三：Git History</h2>
+      <p>每次迭代的成果都通过 Git 提交保存，形成可追溯的历史记录。</p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">🔀</span>
+        <span class="callout-title">Git 的工作</span>
+        <div class="callout-content">
+          <p><strong>自动提交：</strong>每次故事完成后，AI 自动执行 <code>git add . && git commit -m "feat: US-001 - Add priority field"</code></p>
+          <p><strong>命名规范：</strong>提交信息格式固定：<code>feat: [Story ID] - [Story Title]</code></p>
+          <p><strong>历史可查：</strong>新实例通过 <code>git log --oneline</code> 了解当前状态</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">档案（Archive）机制</h2>
+      <p>当开始新功能时，Ralph 会自动归档之前的运行记录。</p>
+
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">archive/</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14-task-priority/</div>
+              <div class="ft-desc>prd.json, progress.txt</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-15-deadline-feature/</div>
+              <div class="ft-desc>prd.json, progress.txt</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-16-notifications/</div>
+              <div class="ft-desc>prd.json, progress.txt</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">练习题：找出错误</h2>
+
+      <div class="bug-challenge" id="bug-4">
+        <h3>下面这段 progress.txt 有什么问题？</h3>
+        <div class="bug-code">
+          <div class="bug-line" data-correct="true" data-explanation="正确！progress.txt 应该是只追加的，不应该删除或覆盖旧内容。旧的学习记录对后续迭代很有价值。">
+            <span class="line-num">1</span>
+            <code><span class="code-keyword"># Ralph Progress Log</span></code>
+          </div>
+          <div class="bug-line">
+            <span class="line-num">2</span>
+            <code><span class="code-keyword"># ====================</span></code>
+          </div>
+          <div class="bug-line" data-correct="true" data-explanation="正确！每次迭代应该追加自己的条目，而不是替换。这会丢失之前的学习。">
+            <span class="line-num">3</span>
+            <code><span class="code-comment">## Codebase Patterns</span></code>
+          </div>
+          <div class="bug-line" data-correct="true" data-explanation="正确！这是正确的格式：append 操作，保留历史，标记日期和故事 ID。">
+            <span class="line-num">4</span>
+            <code>Started: 2025-04-14 10:30</code>
+          </div>
+          <div class="bug-line" data-correct="true" data-explanation="正确！这是正确的分隔符格式。">
+            <span class="line-num">5</span>
+            <code>---</code>
+          </div>
+          <div class="bug-line">
+            <span class="line-num">6</span>
+            <code><span class="code-comment"># 2025-04-14 - US-002: Add priority display</span></code>
+          </div>
+          <div class="bug-line">
+            <span class="line-num">7</span>
+            <code>echo <span class="code-string">"New progress"</span> > progress.txt  <span class="code-comment"># WRONG: overwrites file</span></code>
+          </div>
+        </div>
+        <div class="bug-feedback"></div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-4);">
+        <button class="btn btn-primary" onclick="document.querySelectorAll('.bug-line').forEach(l => l.classList.contains('correct') || l.classList.remove('correct')); document.querySelector('.bug-feedback').className = 'bug-feedback';">重置</button>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">总结：Ralph 的记忆策略</h2>
+
+      <div class="pattern-cards">
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #FDF5E0; color: #BF9530;">📝</div>
+          <h3 class="pattern-title">progress.txt</h3>
+          <p class="pattern-desc">迭代日志，只追加不覆盖，记录每次发现</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #E8F5EE; color: #226B41;">📚</div>
+          <h3 class="pattern-title">AGENTS.md</h3>
+          <p class="pattern-desc">项目指南，汇总代码库模式和惯例</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #E4F2F7; color: #1F6280;">🔀</div>
+          <h3 class="pattern-title">Git History</h3>
+          <p class="pattern-desc">代码变更历史，可追溯每个故事的实现</p>
+        </div>
+        <div class="pattern-card animate-in">
+          <div class="pattern-icon" style="background: #FDF0E8; color: #BF6A30;">📁</div>
+          <h3 class="pattern-title">Archive</h3>
+          <p class="pattern-desc">归档机制，保存旧运行记录供参考</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">关键术语</h2>
+      <p class="term" data-definition="将新内容添加到文件末尾，而不是覆盖原有内容。progress.txt 使用追加模式，确保学习历史不被丢失。">只追加（Append-only）</p>、<p class="term" data-definition="Ralph 用于记录发现的代码库模式、惯例和设计决策的文件。由 Ralph 自动更新，供后续迭代学习。">AGENTS.md</p>、<p class="term" data-definition="Ralph 的迭代日志文件。每次迭代完成后追加新内容，记录完成的故事、修改的文件和学到的经验。">progress.txt</p>
+    </div>
+  </div>
+</section><section class="module" id="module-5">
+  <div class="module-content">
+    <span class="module-number">05</span>
+    <h1 class="module-title">聪明的技巧</h1>
+    <p class="module-subtitle">Ralph 如何避免常见陷阱</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">故事拆分：小而可完成</h2>
+      <p>Ralph 的核心理念：每个故事应该小到可以在一次迭代内完成。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">prd.json 示例</div>
+          <div class="tl"><span class="code-keyword">"userStories"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);">{</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-001"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"title"</span>: <span class="code-string">"Add deadline column"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">},</div>
+          <div class="tl" style="padding-left: var(--space-2);">{</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-002"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"title"</span>: <span class="code-string">"Show deadline in UI"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">}</div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">正确做法</div>
+          <p><strong>单职责原则：</strong>US-001 只做数据库变更，US-002 只做 UI 显示。每个故事专注一件事。</p>
+          <p><strong>依赖顺序：</strong>US-001 先做（数据库变更），US-002 后做（依赖数据库）。</p>
+          <p><strong>避免这种情况：</strong>如果有一个故事叫"添加截止日期功能"，它可能同时涉及数据库、UI、验证、筛选，太复杂了。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">验收标准：必须可验证</h2>
+      <p>每个故事的验收标准必须具体、明确、可测试。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">❌ 坏的验收标准</div>
+          <div class="tl"><span class="code-comment"># US-003: Add deadline feature</span></div>
+          <div class="tl"><span class="code-keyword">"acceptanceCriteria"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Works correctly"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Good UX"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Users like it"</span></div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">❌ 问题</div>
+          <p><strong>"Works correctly"</strong> - 太模糊，怎么算正确？</p>
+          <p><strong>"Good UX"</strong> - 主观判断，无法验证</p>
+          <p><strong>"Users like it"</strong> - 需要用户调研，Ralph 无法验证</p>
+        </div>
+      </div>
+
+      <div class="translation-block" style="margin-top: var(--space-6);">
+        <div class="translation-code">
+          <div class="translation-label">✅ 好的验收标准</div>
+          <div class="tl"><span class="code-comment"># US-003: Add deadline field</span></div>
+          <div class="tl"><span class="code-keyword">"acceptanceCriteria"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Date column added to tasks table"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Date picker shows on task form"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Typecheck passes"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Verify in browser using dev-browser skill"</span></div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">✅ 改进</div>
+          <p><strong>"Date column added"</strong> - 具体，可检查数据库 schema</p>
+          <p><strong>"Date picker shows"</strong> - 明确，UI 功能具体描述</p>
+          <p><strong>"Typecheck passes"</strong> - 可执行，有明确结果</p>
+          <p><strong>"Verify in browser"</strong> - 为 UI 故事添加验证步骤</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">质量检查：永远不能绕过</h2>
+      <p>Ralph 要求每个故事的验收标准必须包括质量检查。</p>
+
+      <div class="callout callout-accent">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-title">关键规则</span>
+        <div class="callout-content">
+          <p><strong>所有故事必须有：</strong><code>Typecheck passes</code></p>
+          <p><strong>涉及测试的故事必须有：</strong><code>Tests pass</code></p>
+          <p><strong>前端故事必须有：</strong><code>Verify in browser using dev-browser skill</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">自动归档（Archive）</h2>
+      <p>当你开始新功能时，Ralph 会自动保存旧运行的记录。</p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <p>修改 prd.json（branchName 变化）</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <p>Ralph 检测到分支变化</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <p>创建 archive/日期-功能名/</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <p>复制旧 prd.json 和 progress.txt</p>
+        </div>
+      </div>
+
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">archive/2025-04-14-task-priority/</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">prd.json</div>
+              <div class="ft-desc>历史任务清单</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">progress.txt</div>
+              <div class="ft-desc>历史学习记录</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">错误处理：优雅降级</h2>
+      <p>当 AI 命令失败时，Ralph 不会崩溃，而是继续迭代。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">ralph.sh 中的容错代码</div>
+          <div class="tl"><span class="code-comment"># 启动 AI 实例</span></div>
+          <div class="tl"><span class="code-function">OUTPUT</span>=$(<span class="code-function">amp</span> <span class="code-operator">...</span> || <span class="code-keyword">true</span>)</div>
+          <div class="tl"><span class="code-comment"># 检查完成信号</span></div>
+          <div class="tl"><span class="code-keyword">if</span> <span class="code-function">echo</span> <span class="code-string">"$OUTPUT"</span> | <span class="code-function">grep</span> <span class="code-string">"&lt;promise&gt;COMPLETE&lt;/promise&gt;"</span>; <span class="code-keyword">then</span></div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-function">exit</span> 0</div>
+          <div class="tl"><span class="code-keyword">fi</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">容错设计</div>
+          <p><strong><code>|| true</code></strong>：即使 amp 命令失败，也会继续执行，不会中断循环。</p>
+          <p><strong>信号检查：</strong>只有收到 <code>&lt;promise&gt;COMPLETE&lt;/promise&gt;</code> 才认为完成，失败只是跳过本次。</p>
+          <p><strong>最大迭代保护：</strong>即使一直失败，也会在 MAX_ITERATIONS 次后退出，避免无限循环。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">前端验证：dev-browser skill</h2>
+      <p>对于 UI 相关的故事，必须在浏览器中验证。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">前端故事必须包含</div>
+          <div class="tl"><span class="code-keyword">"acceptanceCriteria"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Priority badge shows on card"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Typecheck passes"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-string">"Verify in browser using dev-browser skill"</span> <span class="code-comment">/* 必须 */</span></div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">为什么重要</div>
+          <p><strong>Typecheck 无法检测 UI：</strong>TypeScript 能检查类型错误，但无法检查按钮是否可见。</p>
+          <p><strong>浏览器验证确保可见性：</strong>确认 UI 组件正确渲染，用户可以交互。</p>
+          <p><strong>避免空转：</strong>防止 AI 编译通过但 UI 完全没变化的情况。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">测验：识别好模式</h2>
+
+      <div class="quiz-container" id="quiz-5">
+        <div class="quiz-question-block" data-correct="B" data-explanation-right="正确！验收标准明确可验证，包括 Typecheck 和浏览器验证，这是 Ralph 要求的最佳实践。" data-explanation-wrong="不对。Typecheck 不能替代浏览器验证，UI 故事必须两者都有。">
+          <p class="quiz-question">哪个验收标准最符合 Ralph 的要求？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>Works correctly, Typecheck passes</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>Component renders, Typecheck passes, Verify in browser</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>Typecheck passes</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="quiz-check-btn" onclick="checkQuiz('quiz-5')">检查答案</button>
+        <button class="quiz-reset-btn" onclick="resetQuiz('quiz-5')">重试</button>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">总结：Ralph 的黄金法则</h2>
+
+      <div class="icon-rows">
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E8F5EE; color: #226B41;">1️⃣</div>
+          <div>
+            <strong>小故事</strong>
+            <p>单次迭代能完成，避免上下文溢出</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E4F2F7; color: #1F6280;">2️⃣</div>
+          <div>
+            <strong>可验证</strong>
+            <p>验收标准必须具体、明确、可测试</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDF5E0; color: #BF9530;">3️⃣</div>
+          <div>
+            <strong>必检查</strong>
+            <p>Typecheck + Tests + Browser 验证</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDE8E4; color: #C43A30;">4️⃣</div>
+          <div>
+            <strong>容错性</strong>
+            <p>失败不中断，优雅降级继续</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><section class="module" id="module-6">
+  <div class="module-content">
+    <span class="module-number">06</span>
+    <h1 class="module-title">当问题发生时</h1>
+    <p class="module-subtitle">调试 Ralph 循环的实用技巧</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">调试流程：从日志开始</h2>
+      <p>当 Ralph 出现问题，首先检查三个关键文件。</p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <p>查看 progress.txt（最新日志）</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <p>检查 prd.json 任务状态</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <p>查看 archive/ 历史记录</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">progress.txt：时间线日志</h2>
+      <p>Ralph 在每次迭代时会追加日志到 progress.txt。</p>
+
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">progress.txt</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:23:45 - Started iteration 1</div>
+              <div class="ft-desc">迭代开始</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:24:12 - AI: Modified src/components/TaskCard.tsx</div>
+              <div class="ft-desc">AI 修改了代码</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:24:45 - Typecheck: FAILED</div>
+              <div class="ft-desc">类型检查失败！</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:25:00 - AI: Fixed type error in TaskCard.tsx:45</div>
+              <div class="ft-desc">AI 修复了错误</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:25:30 - Typecheck: PASSED</div>
+              <div class="ft-desc">类型检查通过</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:26:00 - Story US-001 completed</div>
+              <div class="ft-desc">故事完成</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 1：AI 卡住了</h2>
+      <p>AI 可能陷入无限循环或长时间没有进展。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">症状</div>
+          <div class="tl"><span class="code-comment"># progress.txt 中看到：</span></div>
+          <div class="tl"><span class="code-comment"># 同一条消息重复出现</span></div>
+          <div class="tl"><span class="code-string">"AI: Installing dependencies..."</span>  <span class="code-comment"># 多次出现</span></div>
+          <div class="tl"><span class="code-string">"AI: Building project..."</span>        <span class="code-comment"># 循环</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">原因和解决</div>
+          <p><strong>可能原因：</strong>npm/yarn 依赖问题，缓存冲突，网络问题</p>
+          <p><strong>解决方案 1：</strong>清理依赖：<code>rm -rf node_modules && rm package-lock.json && npm install</code></p>
+          <p><strong>解决方案 2：</strong>检查网络连接，重试</p>
+          <p><strong>解决方案 3：</strong>在 prd.json 中减小任务范围</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 2：Typecheck 失败</h2>
+      <p>AI 修改的代码有类型错误。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">progress.txt 中的错误</div>
+          <div class="tl"><span class="code-comment"># Typecheck: FAILED</span></div>
+          <div class="tl"><span class="code-keyword">error</span> <span class="code-string">TS2322</span>: Type <span class="code-string">'string | undefined'</span> is not assignable to type <span class="code-string">'string'</span></div>
+          <div class="tl"><span class="code-comment">#    src/components/TaskCard.tsx:45</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">如何帮助 Ralph</div>
+          <p><strong>方法 1：</strong>AI 通常会自动修复类型错误</p>
+          <p><strong>方法 2：</strong>如果反复失败，可以更详细描述要求</p>
+          <p><strong>方法 3：</strong>检查 AGENTS.md 是否有相关编码规范</p>
+          <p><strong>方法 4：</strong>手动修复并提交，让 Ralph 继续下一个故事</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 3：验收标准未完成</h2>
+      <p>故事标记为完成，但验收标准没有全部满足。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">prd.json 状态</div>
+          <div class="tl"><span class="code-keyword">"userStories"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);">{</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-003"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"title"</span>: <span class="code-string">"Show priority badge"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span>  <span class="code-comment">// 标记为未完成</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">}</div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">为什么发生</div>
+          <p><strong>原因 1：</strong>AI 认为已完成，但实际未通过所有验证</p>
+          <p><strong>原因 2：</strong>验收标准描述不清晰，AI 理解有误</p>
+          <p><strong>原因 3：</strong>测试/Typecheck 通过了，但 UI 没验证</p>
+          <p><strong>解决方法：</strong>检查哪些验收标准未满足，添加更具体的描述</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 4：git 冲突</h2>
+      <p>当多个功能分支同时开发时可能发生冲突。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">症状</div>
+          <div class="tl"><span class="code-comment"># AI 提交时遇到错误</span></div>
+          <div class="tl"><span class="code-string">"error: merge conflicts"</span></div>
+          <div class="tl"><span class="code-string">"src/utils/api.ts contains conflicts"</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">如何处理</div>
+          <p><strong>AI 无法自动解决冲突：</strong>需要人工介入</p>
+          <p><strong>步骤 1：</strong>查看 conflict markers <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></p>
+          <p><strong>步骤 2：</strong>手动编辑文件，选择保留哪个版本</p>
+          <p><strong>步骤 3：</strong>标记冲突已解决：<code>git add 文件名</code></p>
+          <p><strong>步骤 4：</strong>完成合并：<code>git commit</code></p>
+          <p><strong>预防：</strong>使用更小的故事，减少同时修改的文件数量</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">调试工具：分组讨论</h2>
+      <p>想象你是一个调试小组，分析 Ralph 的问题。</p>
+
+      <div class="chat-container" id="chat-6">
+        <div class="chat-scenario">
+          <div class="chat-header">
+            <span class="chat-avatar">👨‍💻</span>
+            <span class="chat-name">开发者</span>
+            <span class="chat-role">你</span>
+          </div>
+          <div class="chat-message">
+            <p>"Ralph 卡在 US-005 三天了，progress.txt 显示反复安装依赖，怎么办？"</p>
+          </div>
+        </div>
+
+        <div class="chat-group">
+          <div class="chat-members">
+            <span class="chat-member">👨‍💻 开发者</span>
+            <span class="chat-member">🤖 AI 专家</span>
+            <span class="chat-member">🔧 DevOps</span>
+          </div>
+
+          <div class="chat-message user">
+            <span class="chat-avatar">👨‍💻</span>
+            <p>"我看了 progress.txt，AI 一直在执行 npm install，但每次都超时。"</p>
+          </div>
+
+          <div class="chat-message ai-expert">
+            <span class="chat-avatar">🤖</span>
+            <p>"这可能是网络问题。检查是否需要在 AGENTS.md 中添加网络代理设置？"</p>
+          </div>
+
+          <div class="chat-message devops">
+            <span class="chat-avatar">🔧</span>
+            <p>"或者清理缓存重试：先删除 node_modules 和 lock 文件。"</p>
+          </div>
+
+          <div class="chat-message user">
+            <span class="chat-avatar">👨‍💻</span>
+            <p>"明白了！我可以手动清理后提交，让 Ralph 继续。或者拆分 US-005 为更小的故事。"</p>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <input type="text" class="chat-input" placeholder="输入你的分析..." />
+          <button class="chat-send-btn">发送</button>
+        </div>
+      </div>
+
+      <div class="callout callout-accent">
+        <span class="callout-icon">💡</span>
+        <span class="callout-title">调试原则</span>
+        <div class="callout-content">
+          <p><strong>1. 先看日志</strong> - progress.txt 记录所有操作</p>
+          <p><strong>2. 再查状态</strong> - prd.json 显示任务完成情况</p>
+          <p><strong>3. 最后动手</strong> - 先分析再修复，避免盲目操作</p>
+          <p><strong>4. 学会预防</strong> - 好的任务拆分能避免大部分问题</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">应急清单：快速排查表</h2>
+
+      <table class="debug-table">
+        <thead>
+          <tr>
+            <th>症状</th>
+            <th>可能原因</th>
+            <th>解决步骤</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Typecheck: FAILED</code></td>
+            <td>AI 代码有类型错误</td>
+            <td>1. 检查错误信息<br>2. 通常 AI 会自修复<br>3. 否则手动修正</td>
+          </tr>
+          <tr>
+            <td><code>Tests: FAILED</code></td>
+            <td>AI 破坏了测试</td>
+            <td>1. 查看失败测试<br>2. 检查测试逻辑<br>3. 修复测试或实现</td>
+          </tr>
+          <tr>
+            <td>AI 循环重复</td>
+            <td>依赖安装/构建问题</td>
+            <td>1. 清理 node_modules<br>2. 重试 install<br>3. 检查网络</td>
+          </tr>
+          <tr>
+            <td><code>passes: false</code></td>
+            <td>验收标准未满足</td>
+            <td>1. 检查哪些未完成<br>2. 更新验收标准描述<br>3. 让 AI 重试</td>
+          </tr>
+          <tr>
+            <td>git merge conflict</td>
+            <td>分支冲突</td>
+            <td>1. 查看 conflict markers<br>2. 手动解决<br>3. 标记已解决并提交</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">当 AI 完全迷失方向</h2>
+      <p>有时 AI 会做出完全无关的修改。</p>
+
+      <div class="callout callout-warning">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-title">警告信号</span>
+        <div class="callout-content">
+          <p><strong>"AI: Added README.md"</strong> - 但你要求的是 UI 修改</p>
+          <p><strong>"AI: Deleted src/ 目录"</strong> - 灾难性错误</p>
+          <p><strong>进度停滞</strong> - 反复修改同一文件，无进展</p>
+          <p><strong>验收标准全未满足</strong> - AI 完全误解任务</p>
+        </div>
+      </div>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">恢复策略</div>
+          <div class="tl"><span class="code-comment"># 方案 1：从 archive 恢复</span></div>
+          <div class="tl"><span class="code-function">cp</span> archive/<span class="code-number">2025</span>-<span class="code-number">04</span>-<span class="code-number">13</span>-<span class="code-keyword">old</span>-feature/prd.json .</div>
+          <div class="tl"><span class="code-comment"># 方案 2：git 回退</span></div>
+          <div class="tl"><span class="code-function">git reset</span> <span class="code-string">--hard</span> HEAD~<span class="code-number">1</span></div>
+          <div class="tl"><span class="code-comment"># 方案 3：重新开始</span></div>
+          <div class="tl"><span class="code-function">rm</span> progress.txt  <span class="code-comment"># 重置进度</span></div>
+          <div class="tl"><span class="code-function">rm</span> prd.json</div>
+          <div class="tl"><span class="code-function">cp</span> prd.json.template prd.json</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">预防措施</div>
+          <p><strong>1. 小故事</strong> - 减少 AI 犯错空间</p>
+          <p><strong>2. 清晰验收标准</strong> - 避免误解</p>
+          <p><strong>3. AGENTS.md 模式</strong> - 提供编码规范</p>
+          <p><strong>4. 定期检查</strong> - 不要完全放手不管</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">测验：你准备好调试了吗？</h2>
+
+      <div class="quiz-container" id="quiz-6">
+        <div class="quiz-question-block" data-correct="A" data-explanation-right="正确！progress.txt 记录了每次迭代的日志，是调试的第一手资料。" data-explanation-wrong="不对。prd.json 虽然重要，但首先应该看日志了解发生了什么。">
+          <p class="quiz-question">Ralph 出现问题时，你应该首先检查哪个文件？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>progress.txt</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>prd.json</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>CLAUDE.md</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question-block" data-correct="B" data-explanation-right="正确！对于 UI 故事，Typecheck 无法检测到 UI 是否正确渲染，必须用浏览器验证。" data-explanation-wrong="不对。Typecheck 只能检查类型，不能检查 UI 渲染。">
+          <p class="quiz-question">前端故事的验收标准必须包含什么？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>只有 Typecheck passes</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>Typecheck passes + Verify in browser</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>只有 Tests pass</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question-block" data-correct="A" data-explanation-right="正确！git 冲突需要人工介入解决，Ralph 无法自动处理。" data-explanation-wrong="不对。git 冲突无法自动解决，需要人工编辑文件选择保留哪个版本。">
+          <p class="quiz-question">当 Ralph 遇到 git merge conflict 时应该怎么办？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>手动查看 conflict markers 并解决</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>让 Ralph 自动解决</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>删除所有文件重新开始</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <button class="quiz-check-btn" onclick="checkQuiz('quiz-6')">检查答案</button>
+        <button class="quiz-reset-btn" onclick="resetQuiz('quiz-6')">重试</button>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">总结：成为一个优秀的 Ralph 调试员</h2>
+
+      <div class="icon-rows">
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E8F5EE; color: #226B41;">1️⃣</div>
+          <div>
+            <strong>日志优先</strong>
+            <p>progress.txt 是你最好的朋友</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E4F2F7; color: #1F6280;">2️⃣</div>
+          <div>
+            <strong>预防为主</strong>
+            <p>小故事、清晰标准减少问题</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDF5E0; color: #BF9530;">3️⃣</div>
+          <div>
+            <strong>容错心态</strong>
+            <p>失败是迭代的一部分</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDE8E4; color: #C43A30;">4️⃣</div>
+          <div>
+            <strong>会利用工具</strong>
+            <p>archive、git、验证工具都是帮手</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">🎉 恭喜！</h2>
+      <p>你已经完成了 Ralph 完全指南的全部 6 个模块。现在你了解了：</p>
+
+      <div class="checklist-final">
+        <div class="checklist-item">✅ Ralph 是什么，以及它为什么强大</div>
+        <div class="checklist-item">✅ Ralph 的核心组件和它们的职责</div>
+        <div class="checklist-item">✅ 数据如何在 AI 和文件系统之间流动</div>
+        <div class="checklist-item">✅ Ralph 如何通过文件实现"持久内存"</div>
+        <div class="checklist-item">✅ 如何写出高质量的任务描述</div>
+        <div class="checklist-item">✅ 如何调试和解决常见问题</div>
+      </div>
+
+      <div class="callout callout-success">
+        <span class="callout-icon">🚀</span>
+        <span class="callout-title">下一步行动</span>
+        <div class="callout-content">
+          <p><strong>开始使用 Ralph：</strong>在你的项目中尝试这个自主开发循环</p>
+          <p><strong>分享经验：</strong>将你的心得写下来，帮助更多人</p>
+          <p><strong>持续改进：</strong>Ralph 本身也在不断进化，关注更新</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  </main>
+</body>
+</html>

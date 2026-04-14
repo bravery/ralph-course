@@ -1,0 +1,422 @@
+<section class="module" id="module-6">
+  <div class="module-content">
+    <span class="module-number">06</span>
+    <h1 class="module-title">当问题发生时</h1>
+    <p class="module-subtitle">调试 Ralph 循环的实用技巧</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">调试流程：从日志开始</h2>
+      <p>当 Ralph 出现问题，首先检查三个关键文件。</p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <p>查看 progress.txt（最新日志）</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <p>检查 prd.json 任务状态</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <p>查看 archive/ 历史记录</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">progress.txt：时间线日志</h2>
+      <p>Ralph 在每次迭代时会追加日志到 progress.txt。</p>
+
+      <div class="file-tree animate-in">
+        <div class="ft-folder">
+          <div class="ft-name">progress.txt</div>
+          <div class="ft-children">
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:23:45 - Started iteration 1</div>
+              <div class="ft-desc">迭代开始</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:24:12 - AI: Modified src/components/TaskCard.tsx</div>
+              <div class="ft-desc">AI 修改了代码</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:24:45 - Typecheck: FAILED</div>
+              <div class="ft-desc">类型检查失败！</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:25:00 - AI: Fixed type error in TaskCard.tsx:45</div>
+              <div class="ft-desc">AI 修复了错误</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:25:30 - Typecheck: PASSED</div>
+              <div class="ft-desc">类型检查通过</div>
+            </div>
+            <div class="ft-file">
+              <div class="ft-name">2025-04-14 10:26:00 - Story US-001 completed</div>
+              <div class="ft-desc">故事完成</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 1：AI 卡住了</h2>
+      <p>AI 可能陷入无限循环或长时间没有进展。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">症状</div>
+          <div class="tl"><span class="code-comment"># progress.txt 中看到：</span></div>
+          <div class="tl"><span class="code-comment"># 同一条消息重复出现</span></div>
+          <div class="tl"><span class="code-string">"AI: Installing dependencies..."</span>  <span class="code-comment"># 多次出现</span></div>
+          <div class="tl"><span class="code-string">"AI: Building project..."</span>        <span class="code-comment"># 循环</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">原因和解决</div>
+          <p><strong>可能原因：</strong>npm/yarn 依赖问题，缓存冲突，网络问题</p>
+          <p><strong>解决方案 1：</strong>清理依赖：<code>rm -rf node_modules && rm package-lock.json && npm install</code></p>
+          <p><strong>解决方案 2：</strong>检查网络连接，重试</p>
+          <p><strong>解决方案 3：</strong>在 prd.json 中减小任务范围</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 2：Typecheck 失败</h2>
+      <p>AI 修改的代码有类型错误。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">progress.txt 中的错误</div>
+          <div class="tl"><span class="code-comment"># Typecheck: FAILED</span></div>
+          <div class="tl"><span class="code-keyword">error</span> <span class="code-string">TS2322</span>: Type <span class="code-string">'string | undefined'</span> is not assignable to type <span class="code-string">'string'</span></div>
+          <div class="tl"><span class="code-comment">#    src/components/TaskCard.tsx:45</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">如何帮助 Ralph</div>
+          <p><strong>方法 1：</strong>AI 通常会自动修复类型错误</p>
+          <p><strong>方法 2：</strong>如果反复失败，可以更详细描述要求</p>
+          <p><strong>方法 3：</strong>检查 AGENTS.md 是否有相关编码规范</p>
+          <p><strong>方法 4：</strong>手动修复并提交，让 Ralph 继续下一个故事</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 3：验收标准未完成</h2>
+      <p>故事标记为完成，但验收标准没有全部满足。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">prd.json 状态</div>
+          <div class="tl"><span class="code-keyword">"userStories"</span>: [</div>
+          <div class="tl" style="padding-left: var(--space-2);">{</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"id"</span>: <span class="code-string">"US-003"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"title"</span>: <span class="code-string">"Show priority badge"</span>,</div>
+          <div class="tl" style="padding-left: var(--space-4);"><span class="code-keyword">"passes"</span>: <span class="code-keyword">false</span>  <span class="code-comment">// 标记为未完成</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">}</div>
+          <div class="tl">]</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">为什么发生</div>
+          <p><strong>原因 1：</strong>AI 认为已完成，但实际未通过所有验证</p>
+          <p><strong>原因 2：</strong>验收标准描述不清晰，AI 理解有误</p>
+          <p><strong>原因 3：</strong>测试/Typecheck 通过了，但 UI 没验证</p>
+          <p><strong>解决方法：</strong>检查哪些验收标准未满足，添加更具体的描述</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">常见问题 4：git 冲突</h2>
+      <p>当多个功能分支同时开发时可能发生冲突。</p>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">症状</div>
+          <div class="tl"><span class="code-comment"># AI 提交时遇到错误</span></div>
+          <div class="tl"><span class="code-string">"error: merge conflicts"</span></div>
+          <div class="tl"><span class="code-string">"src/utils/api.ts contains conflicts"</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">如何处理</div>
+          <p><strong>AI 无法自动解决冲突：</strong>需要人工介入</p>
+          <p><strong>步骤 1：</strong>查看 conflict markers <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code></p>
+          <p><strong>步骤 2：</strong>手动编辑文件，选择保留哪个版本</p>
+          <p><strong>步骤 3：</strong>标记冲突已解决：<code>git add 文件名</code></p>
+          <p><strong>步骤 4：</strong>完成合并：<code>git commit</code></p>
+          <p><strong>预防：</strong>使用更小的故事，减少同时修改的文件数量</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">调试工具：分组讨论</h2>
+      <p>想象你是一个调试小组，分析 Ralph 的问题。</p>
+
+      <div class="chat-container" id="chat-6">
+        <div class="chat-scenario">
+          <div class="chat-header">
+            <span class="chat-avatar">👨‍💻</span>
+            <span class="chat-name">开发者</span>
+            <span class="chat-role">你</span>
+          </div>
+          <div class="chat-message">
+            <p>"Ralph 卡在 US-005 三天了，progress.txt 显示反复安装依赖，怎么办？"</p>
+          </div>
+        </div>
+
+        <div class="chat-group">
+          <div class="chat-members">
+            <span class="chat-member">👨‍💻 开发者</span>
+            <span class="chat-member">🤖 AI 专家</span>
+            <span class="chat-member">🔧 DevOps</span>
+          </div>
+
+          <div class="chat-message user">
+            <span class="chat-avatar">👨‍💻</span>
+            <p>"我看了 progress.txt，AI 一直在执行 npm install，但每次都超时。"</p>
+          </div>
+
+          <div class="chat-message ai-expert">
+            <span class="chat-avatar">🤖</span>
+            <p>"这可能是网络问题。检查是否需要在 AGENTS.md 中添加网络代理设置？"</p>
+          </div>
+
+          <div class="chat-message devops">
+            <span class="chat-avatar">🔧</span>
+            <p>"或者清理缓存重试：先删除 node_modules 和 lock 文件。"</p>
+          </div>
+
+          <div class="chat-message user">
+            <span class="chat-avatar">👨‍💻</span>
+            <p>"明白了！我可以手动清理后提交，让 Ralph 继续。或者拆分 US-005 为更小的故事。"</p>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <input type="text" class="chat-input" placeholder="输入你的分析..." />
+          <button class="chat-send-btn">发送</button>
+        </div>
+      </div>
+
+      <div class="callout callout-accent">
+        <span class="callout-icon">💡</span>
+        <span class="callout-title">调试原则</span>
+        <div class="callout-content">
+          <p><strong>1. 先看日志</strong> - progress.txt 记录所有操作</p>
+          <p><strong>2. 再查状态</strong> - prd.json 显示任务完成情况</p>
+          <p><strong>3. 最后动手</strong> - 先分析再修复，避免盲目操作</p>
+          <p><strong>4. 学会预防</strong> - 好的任务拆分能避免大部分问题</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">应急清单：快速排查表</h2>
+
+      <table class="debug-table">
+        <thead>
+          <tr>
+            <th>症状</th>
+            <th>可能原因</th>
+            <th>解决步骤</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Typecheck: FAILED</code></td>
+            <td>AI 代码有类型错误</td>
+            <td>1. 检查错误信息<br>2. 通常 AI 会自修复<br>3. 否则手动修正</td>
+          </tr>
+          <tr>
+            <td><code>Tests: FAILED</code></td>
+            <td>AI 破坏了测试</td>
+            <td>1. 查看失败测试<br>2. 检查测试逻辑<br>3. 修复测试或实现</td>
+          </tr>
+          <tr>
+            <td>AI 循环重复</td>
+            <td>依赖安装/构建问题</td>
+            <td>1. 清理 node_modules<br>2. 重试 install<br>3. 检查网络</td>
+          </tr>
+          <tr>
+            <td><code>passes: false</code></td>
+            <td>验收标准未满足</td>
+            <td>1. 检查哪些未完成<br>2. 更新验收标准描述<br>3. 让 AI 重试</td>
+          </tr>
+          <tr>
+            <td>git merge conflict</td>
+            <td>分支冲突</td>
+            <td>1. 查看 conflict markers<br>2. 手动解决<br>3. 标记已解决并提交</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">当 AI 完全迷失方向</h2>
+      <p>有时 AI 会做出完全无关的修改。</p>
+
+      <div class="callout callout-warning">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-title">警告信号</span>
+        <div class="callout-content">
+          <p><strong>"AI: Added README.md"</strong> - 但你要求的是 UI 修改</p>
+          <p><strong>"AI: Deleted src/ 目录"</strong> - 灾难性错误</p>
+          <p><strong>进度停滞</strong> - 反复修改同一文件，无进展</p>
+          <p><strong>验收标准全未满足</strong> - AI 完全误解任务</p>
+        </div>
+      </div>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">恢复策略</div>
+          <div class="tl"><span class="code-comment"># 方案 1：从 archive 恢复</span></div>
+          <div class="tl"><span class="code-function">cp</span> archive/<span class="code-number">2025</span>-<span class="code-number">04</span>-<span class="code-number">13</span>-<span class="code-keyword">old</span>-feature/prd.json .</div>
+          <div class="tl"><span class="code-comment"># 方案 2：git 回退</span></div>
+          <div class="tl"><span class="code-function">git reset</span> <span class="code-string">--hard</span> HEAD~<span class="code-number">1</span></div>
+          <div class="tl"><span class="code-comment"># 方案 3：重新开始</span></div>
+          <div class="tl"><span class="code-function">rm</span> progress.txt  <span class="code-comment"># 重置进度</span></div>
+          <div class="tl"><span class="code-function">rm</span> prd.json</div>
+          <div class="tl"><span class="code-function">cp</span> prd.json.template prd.json</div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">预防措施</div>
+          <p><strong>1. 小故事</strong> - 减少 AI 犯错空间</p>
+          <p><strong>2. 清晰验收标准</strong> - 避免误解</p>
+          <p><strong>3. AGENTS.md 模式</strong> - 提供编码规范</p>
+          <p><strong>4. 定期检查</strong> - 不要完全放手不管</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">测验：你准备好调试了吗？</h2>
+
+      <div class="quiz-container" id="quiz-6">
+        <div class="quiz-question-block" data-correct="A" data-explanation-right="正确！progress.txt 记录了每次迭代的日志，是调试的第一手资料。" data-explanation-wrong="不对。prd.json 虽然重要，但首先应该看日志了解发生了什么。">
+          <p class="quiz-question">Ralph 出现问题时，你应该首先检查哪个文件？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>progress.txt</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>prd.json</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>CLAUDE.md</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question-block" data-correct="B" data-explanation-right="正确！对于 UI 故事，Typecheck 无法检测到 UI 是否正确渲染，必须用浏览器验证。" data-explanation-wrong="不对。Typecheck 只能检查类型，不能检查 UI 渲染。">
+          <p class="quiz-question">前端故事的验收标准必须包含什么？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>只有 Typecheck passes</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>Typecheck passes + Verify in browser</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>只有 Tests pass</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question-block" data-correct="A" data-explanation-right="正确！git 冲突需要人工介入解决，Ralph 无法自动处理。" data-explanation-wrong="不对。git 冲突无法自动解决，需要人工编辑文件选择保留哪个版本。">
+          <p class="quiz-question">当 Ralph 遇到 git merge conflict 时应该怎么办？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>手动查看 conflict markers 并解决</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>让 Ralph 自动解决</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>删除所有文件重新开始</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <button class="quiz-check-btn" onclick="checkQuiz('quiz-6')">检查答案</button>
+        <button class="quiz-reset-btn" onclick="resetQuiz('quiz-6')">重试</button>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">总结：成为一个优秀的 Ralph 调试员</h2>
+
+      <div class="icon-rows">
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E8F5EE; color: #226B41;">1️⃣</div>
+          <div>
+            <strong>日志优先</strong>
+            <p>progress.txt 是你最好的朋友</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #E4F2F7; color: #1F6280;">2️⃣</div>
+          <div>
+            <strong>预防为主</strong>
+            <p>小故事、清晰标准减少问题</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDF5E0; color: #BF9530;">3️⃣</div>
+          <div>
+            <strong>容错心态</strong>
+            <p>失败是迭代的一部分</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <div class="icon-circle" style="background: #FDE8E4; color: #C43A30;">4️⃣</div>
+          <div>
+            <strong>会利用工具</strong>
+            <p>archive、git、验证工具都是帮手</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">🎉 恭喜！</h2>
+      <p>你已经完成了 Ralph 完全指南的全部 6 个模块。现在你了解了：</p>
+
+      <div class="checklist-final">
+        <div class="checklist-item">✅ Ralph 是什么，以及它为什么强大</div>
+        <div class="checklist-item">✅ Ralph 的核心组件和它们的职责</div>
+        <div class="checklist-item">✅ 数据如何在 AI 和文件系统之间流动</div>
+        <div class="checklist-item">✅ Ralph 如何通过文件实现"持久内存"</div>
+        <div class="checklist-item">✅ 如何写出高质量的任务描述</div>
+        <div class="checklist-item">✅ 如何调试和解决常见问题</div>
+      </div>
+
+      <div class="callout callout-success">
+        <span class="callout-icon">🚀</span>
+        <span class="callout-title">下一步行动</span>
+        <div class="callout-content">
+          <p><strong>开始使用 Ralph：</strong>在你的项目中尝试这个自主开发循环</p>
+          <p><strong>分享经验：</strong>将你的心得写下来，帮助更多人</p>
+          <p><strong>持续改进：</strong>Ralph 本身也在不断进化，关注更新</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

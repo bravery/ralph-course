@@ -1,0 +1,237 @@
+<section class="module" id="module-3">
+  <div class="module-content">
+    <span class="module-number">03</span>
+    <h1 class="module-title">数据如何流动</h1>
+    <p class="module-subtitle">从任务挑选到完成的完整路径</p>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">一次迭代的完整生命周期</h2>
+      <p>点击"下一步"来逐步了解 Ralph 的一次完整迭代。每一步都展示了数据如何在不同的"演员"之间传递。</p>
+
+      <div class="flow-animation" id="flow-3" data-steps='[
+        {"label": "Ralph 检查 prd.json", "highlight": "flow-prd"},
+        {"label": "找到最高优先的未完成故事", "highlight": "flow-select"},
+        {"label": "启动新 AI 实例读取上下文", "highlight": "flow-ai"},
+        {"label": "AI 实施代码并通过检查", "highlight": "flow-implement"},
+        {"label": "提交变更并更新 prd.json", "highlight": "flow-commit"},
+        {"label": "记录学习到 progress.txt", "highlight": "flow-log"},
+        {"label": "检查是否全部完成", "highlight": "flow-check"}
+      ]'>
+        <div class="flow-actors">
+          <div class="flow-actor" id="flow-prd">
+            <div class="flow-actor-icon">📋</div>
+            <span>prd.json</span>
+          </div>
+          <div class="flow-actor" id="flow-select">
+            <div class="flow-actor-icon">🎯</div>
+            <span>挑选任务</span>
+          </div>
+          <div class="flow-actor" id="flow-ai">
+            <div class="flow-actor-icon">🧠</div>
+            <span>AI 实例</span>
+          </div>
+          <div class="flow-actor" id="flow-implement">
+            <div class="flow-actor-icon">💻</div>
+            <span>实施代码</span>
+          </div>
+          <div class="flow-actor" id="flow-commit">
+            <div class="flow-actor-icon">💾</div>
+            <span>Git 提交</span>
+          </div>
+          <div class="flow-actor" id="flow-log">
+            <div class="flow-actor-icon">📝</div>
+            <span>progress.txt</span>
+          </div>
+          <div class="flow-actor" id="flow-check">
+            <div class="flow-actor-icon">✅</div>
+            <span>检查完成</span>
+          </div>
+        </div>
+        <div class="flow-step-label">点击"下一步"开始动画</div>
+        <div class="flow-controls">
+          <button class="btn flow-next-btn">下一步</button>
+          <button class="btn flow-reset-btn">重置</button>
+          <span class="flow-progress">Step 0 / 7</span>
+        </div>
+        <div class="flow-packet"></div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">详细流程解析</h2>
+
+      <div class="step-cards">
+        <div class="step-card animate-in">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <strong>Ralph 读取 prd.json</strong>
+            <p>检查哪个故事未完成（passes: false），找出优先级最高的一个</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <strong>启动新 AI 实例</strong>
+            <p>执行 <code>amp</code> 或 <code>claude</code> 命令，加载 prompt.md/CLAUDE.md 指令</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <strong>AI 读取上下文</strong>
+            <p>AI 先读 progress.txt（看已学模式），再读 AGENTS.md，然后读 prd.json</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">代码 ↔ 自然语言翻译</h2>
+
+      <div class="translation-block">
+        <div class="translation-code">
+          <div class="translation-label">ralph.sh 核心循环</div>
+          <div class="tl"><span class="code-keyword">for</span> i in $(seq 1 $MAX_ITERATIONS); <span class="code-keyword">do</span></div>
+          <div class="tl" style="padding-left: var(--space-2);"><span class="code-comment"># 启动 AI 实例</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">OUTPUT=$(cat <span class="code-string">"$SCRIPT_DIR/prompt.md"</span> | <span class="code-function">amp</span> <span class="code-operator">...</span> || <span class="code-keyword">true</span>)</div>
+          <div class="tl"><span class="code-comment"># 检查完成信号</span></div>
+          <div class="tl"><span class="code-keyword">if</span> echo <span class="code-string">"$OUTPUT"</span> | grep <span class="code-string">"<promise>COMPLETE</promise>"</span>; <span class="code-keyword">then</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">  echo <span class="code-string">"Ralph completed all tasks!"</span></div>
+          <div class="tl" style="padding-left: var(--space-2);">  exit 0</div>
+          <div class="tl"><span class="code-keyword">fi</span></div>
+          <div class="tl"><span class="code-keyword">done</span></div>
+        </div>
+        <div class="translation-english">
+          <div class="translation-label">白话版解释</div>
+          <p><strong>循环控制：</strong>Ralph 有一个最大迭代次数，默认 10 次。每次循环启动一个新的 AI 实例。</p>
+          <p><strong>关键信号：</strong>当 AI 完成所有任务时，会在输出中放入 <code>&lt;promise&gt;COMPLETE&lt;/promise&gt;</code> 这个特殊标记。</p>
+          <p><strong>容错设计：</strong><code>|| true</code> 确保即使 AI 命令失败，循环也会继续而不是崩溃。</p>
+          <p><strong>优雅退出：</strong>收到完成信号后，Ralph 立即退出并输出成功消息，不会继续等待。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">数据流图</h2>
+
+      <div class="arch-diagram">
+        <div class="arch-zone">
+          <div class="arch-zone-label">输入（启动时）</div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📋</span>
+            <span><strong>prd.json</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📝</span>
+            <span><strong>progress.txt</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📚</span>
+            <span><strong>AGENTS.md</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">处理中（每次迭代）</div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">🔀</span>
+            <span><strong>Git History</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">💻</span>
+            <span><strong>Codebase</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">🧠</span>
+            <span><strong>AI Instance</strong></span>
+          </div>
+        </div>
+
+        <div class="arch-zone">
+          <div class="arch-zone-label">输出（每次迭代后）</div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">✅</span>
+            <span><strong>prd.json 更新</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">📝</span>
+            <span><strong>progress.txt 追加</strong></span>
+          </div>
+          <div class="arch-component" style="cursor: default;">
+            <span class="arch-icon">🔀</span>
+            <span><strong>Git Commit</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">场景模拟：添加优先级功能</h2>
+
+      <div class="scenario-block">
+        <div class="scenario-context">
+          <span class="scenario-label">背景</span>
+          <p>你想给任务应用添加"优先级"功能（高/中/低）。你已经用 PRD skill 生成了需求文档。</p>
+        </div>
+      </div>
+
+      <div class="step-cards">
+        <div class="step-card animate-in">
+          <div class="step-num">Step 1</div>
+          <div class="step-body">
+            <strong>转换 PRD</strong>
+            <p>Ralph skill 将 Markdown PRD 转换为 prd.json，包含 4 个用户故事：数据库迁移、UI 显示、编辑表单、筛选功能</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">Step 2</div>
+          <div class="step-body">
+            <strong>启动循环</strong>
+            <p>运行 <code>./ralph.sh</code>，Ralph 读取 prd.json，挑选 US-001（数据库迁移）</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">Step 3</div>
+          <div class="step-body">
+            <strong>AI 实施</strong>
+            <p>Amp 读取指令，检查 progress.txt 了解代码库模式，创建迁移文件，提交变更</p>
+          </div>
+        </div>
+        <div class="step-card animate-in">
+          <div class="step-num">Step 4</div>
+          <div class="step-body">
+            <strong>迭代继续</strong>
+            <p>Ralph 更新 prd.json 标记 US-001 完成，继续挑选 US-002，直到所有 4 个故事完成</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen animate-in">
+      <h2 class="screen-heading">测验：理解数据流</h2>
+
+      <div class="quiz-container" id="quiz-3">
+        <div class="quiz-question-block" data-correct="B" data-explanation-right="正确！AI 先读 progress.txt 看之前发现的模式，再读 AGENTS.md 了解代码库惯例，然后才读 prd.json 看当前任务。" data-explanation-wrong="不太对。实际上 AI 先看 progress.txt 获取上下文，这样才知道这个代码库的特定模式。">
+          <p class="quiz-question">AI 实例启动后，按什么顺序读取文件？</p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-value="A">
+              <div class="quiz-option-radio"></div>
+              <span>prd.json → progress.txt → AGENTS.md</span>
+            </div>
+            <div class="quiz-option" data-value="B">
+              <div class="quiz-option-radio"></div>
+              <span>progress.txt → AGENTS.md → prd.json</span>
+            </div>
+            <div class="quiz-option" data-value="C">
+              <div class="quiz-option-radio"></div>
+              <span>AGENTS.md → prd.json → progress.txt</span>
+            </div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+        <button class="quiz-check-btn" onclick="checkQuiz('quiz-3')">检查答案</button>
+        <button class="quiz-reset-btn" onclick="resetQuiz('quiz-3')">重试</button>
+      </div>
+    </div>
+  </div>
+</section>
